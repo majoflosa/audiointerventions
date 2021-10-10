@@ -1,0 +1,64 @@
+button {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-color: none;
+  border: none;
+  border-radius: 0;
+  color: inherit;
+  text-shadow: none;
+}
+
+@mixin btn($type: primary) {
+  font-family: $font-header;
+  font-size: 16px;
+  font-weight: 700;
+  font-style: normal;
+  text-transform: uppercase;
+  padding: 12px 30px;
+  transition: all 0.25s ease-in-out;
+  display: inline-block;
+
+  @if $type == primary {
+    color: white;
+    background-color: $color-primary;
+    border: 2px solid $color-primary;
+
+    &:hover {
+      text-decoration: none;
+      color: white;
+      background-color: $color-primary-light;
+      border-color: $color-primary-light;
+    }
+  } @else if $type == primary-border {
+    color: $color-primary;
+    background-color: transparent;
+    border: 2px solid $color-primary;
+
+    &:hover {
+      text-decoration: none;
+      background-color: $color-primary;
+      color: white;
+    }
+  }
+}
+
+@mixin btn-flag() {
+  position: relative;
+  padding-left: 48px;
+
+  .grid-flag {
+    position: absolute;
+    height: 48px;
+    width: 48px;
+    top: -2px;
+    left: -2px;
+    background-size: 48px;
+    background-repeat: repeat;
+  }
+
+  .grid-flag + span {
+    display: inline-block;
+    margin-left: 10px;
+  }
+}

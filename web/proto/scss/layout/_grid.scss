@@ -1,0 +1,88 @@
+.grid {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+
+  &__cell {
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  &--gutter {
+    /* overwrite this in your theme; the space between cells will be $gutter*2 */
+    $gutter: 4px;
+
+    margin-left: $gutter * -1;
+    margin-right: $gutter * -1;
+
+    .grid__cell {
+      padding: 0 $gutter;
+      border: none;
+      background: none;
+      margin-bottom: $gutter * 2;
+
+      &-inner {
+        padding: 5px 10px;
+        background: #dddddd;
+        border: 1px solid #aaaaaa;
+      }
+    }
+  }
+
+  &.grid--reverse {
+    flex-direction: row-reverse;
+  }
+
+  .col--grow {
+    flex-grow: 1 !important;
+  }
+
+  /*
+   * Credit: Kevin Powell
+   * https://www.youtube.com/watch?v=J4fAqATYEr0&t=381s
+   */
+   
+  /* base column size, from smallest screens to large */
+  @for $i from 1 through 12 {
+    .col-#{$i} {
+      flex: 0 0 100% / 12 * $i;
+      max-width: 100% / 12 * $i;
+    }
+  }
+
+  /* large phones or landscape mode & small tablets */
+  @media screen and (min-width: 480px) {
+    @for $i from 1 through 12 {
+      .phn-#{$i} {
+        flex: 0 0 100% / 12 * $i;
+      }
+    }
+  }
+  
+  /* tablets */
+  @media screen and (min-width: 720px) {
+    @for $i from 1 through 12 {
+      .tab-#{$i} {
+        flex: 0 0 100% / 12 * $i;
+      }
+    }
+  }
+
+  /* laptops & desktop */
+  @media screen and (min-width: 1024px) {
+    @for $i from 1 through 12 {
+      .dsk-#{$i} {
+        flex: 0 0 100% / 12 * $i;
+      }
+    }
+  }
+
+  /* large screens */
+  @media screen and (min-width: 1392px) {
+    @for $i from 1 through 12 {
+      .xlg-#{$i} {
+        flex: 0 0 100% / 12 * $i;
+      }
+    }
+  }
+}

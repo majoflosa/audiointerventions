@@ -1,0 +1,31 @@
+// = = = = = = = = = = = = = = = = = = = = = =
+// PROTO 1
+// = = = = = = = = = = = = = = = = = = = = = =
+$base-pixel-size: 16;
+
+// fonts
+$font-header: 'Source Sans Pro', sans-serif;
+$font-body: 'Lato', sans-serif;
+
+// colors
+$color-primary: #CA2624;
+$color-primary-light: lighten($color-primary, 10%);
+$color-primary-dark: darken($color-primary, 10%);
+
+$color-bg: #151515;
+$color-bg-light: #201e1e;
+$color-bg-lighter: #2f2c2c;
+$color-bg-lightest: #3e3d47;
+
+$color-light: #dadada;
+$color-lighter: #f0f0f0;
+$color-lightest: white;
+
+// layout
+$width-xs: 300px;
+$width-sm: 680px;
+$width-md: 900px;
+$width-lg: 1200px;
+
+// borders
+$border-std: 1px solid $color-bg-lightest;

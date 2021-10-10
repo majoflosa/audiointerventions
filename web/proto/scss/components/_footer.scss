@@ -1,0 +1,181 @@
+.footer {
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $color-bg-light;
+    padding: 24px 32px;
+    border-bottom: 1px solid lighten($color-bg-light, 35%);
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    
+    &-link {
+      color: $color-light;
+      font-size: 16px;
+      line-height: 1.2;
+      display: inline-block;
+      vertical-align: baseline;
+      
+      & + & {
+        margin-left: 32px;
+
+      }
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    
+    &-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      // background-color: $color-bg-lightest;
+      margin-left: 24px;
+
+      svg {
+        fill: $color-light;
+        display: block;
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  &__middle {
+    background-color: $color-bg-lighter;
+    padding: 48px 32px;
+  }
+
+  &__widgets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    // align-items: flex-start;
+  }
+
+  &__widget {
+    flex-basis: 18%;
+    color: $color-light;
+
+    // & + & {
+    //   margin-left: 48px;
+    // }
+
+    &-title {
+      font-family: $font-header;
+      font-size: 24px;
+      margin-top: 0;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      font-style: italic;
+
+      &:after {
+        content: "";
+        display: block;
+        margin: 8px 0 16px;
+        height: 1px;
+        width: 48px;
+        background-color: $color-light;
+      }
+    }
+  }
+
+  &__widget-logo {
+    // display: flex;
+    // align-items: center;
+    flex-basis: 25%;
+    // padding: 16px;
+    // background-color: rgba(white, 0.1);
+
+    img {
+      filter: grayscale(100%);
+    }
+
+    p {
+      margin: 0 auto 8px;
+      font-size: 28px;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+
+    span.service {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 14px;
+      
+      // &:after {
+      //   content: "";
+      //   display: inline-block;
+      //   vertical-align: middle;
+      //   margin: 0 4px 0 8px;
+      //   width: 4px;
+      //   height: 4px;
+      //   border-radius: 2px;
+      //   background-color: $color-light;
+      // }
+    }
+  }
+
+  &__widget-hours {
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      // margin-left: -8px;
+      // margin-right: -8px;
+      padding: 4px 8px;
+
+      &:nth-child(odd) {
+        background-color: rgba(white, 0.07);
+      }
+
+      &.current {
+        // background-color: rgba(black, 0.2);
+        color: $color-primary;
+      }
+    }
+
+
+  }
+
+  &__widget-contact {
+    p {
+      margin: 0 auto 8px;
+      font-size: 16px;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  &__widget-facebook {
+    justify-self: flex-end;
+  }
+
+  &__bottom {
+    background-color: $color-bg-lighter;
+    color: $color-light;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    border-top: 1px solid lighten($color-bg-light, 20%);
+  }
+}

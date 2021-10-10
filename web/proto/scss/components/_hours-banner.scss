@@ -1,0 +1,47 @@
+.hours-banner {
+  background-color: $color-bg-light;
+  border-top: 1px solid lighten($color-bg-light, 20%);
+  border-bottom: 1px solid lighten($color-bg-light, 20%);
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $color-light;
+
+  &__left {
+    display: flex;
+  }
+
+  &__label {
+    font-family: $font-header;
+    font-style: italic;
+    text-transform: uppercase;
+    color: $color-primary;
+    display: block;
+    margin-right: 16px;
+  }
+
+  &__days {
+    & + & {
+      margin-left: 16px;
+    }
+  }
+
+  &__day {
+    background-color: $color-bg-lightest;
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+
+  &__hour {
+    margin-left: 8px;
+    display: inline-block;
+  }
+
+  &__phone {
+    background-color: $color-bg-lightest;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+}

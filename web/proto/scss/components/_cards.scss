@@ -1,0 +1,99 @@
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-left: -16px;
+  margin-right: -16px;
+}
+
+.card {
+  padding: 0 16px 16px;
+  box-sizing: border-box;
+  flex: 1 1 33%;
+
+  &__inner {
+    background-color: $color-bg-lighter;
+    color: $color-lightest;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    height: 100%;
+    box-shadow: 8px 8px 0 0px rgba($color-primary, 1);
+  }
+
+  &__header {
+    padding: 32px 32px 0;
+
+    .card--image & {
+      padding: 0;
+    }
+  }
+
+  &__image-wrap {
+    width: 100%;
+    padding-bottom: 9 / 16 * 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+  }
+
+  &__title {
+    @include type-title-3();
+
+    .card--image & {
+      padding: 32px 32px 0;
+    }
+
+    &:after {
+      display: block;
+      content: "";
+      width: 40px;
+      height: 2px;
+      background-color: $color-primary;
+      margin-top: 20px;
+    }
+  }
+
+  &__body {
+    padding: 0 32px;
+    font-size: 18px;
+    flex-grow: 1;
+  }
+
+  &__body-text {
+    p:last-child {
+      margin: 0;
+    }
+  }
+
+  &__footer {
+    margin-top: 32px;
+  }
+  
+  &__footer-btn {
+    @include btn();
+    margin: 0 32px;
+  }
+
+  &__footer-content {
+    margin-top: 32px;
+    padding: 20px 32px 12px;
+    font-style: italic;
+    position: relative;
+
+    span:first-child {
+      display: none;
+    }
+
+    .grid-flag {
+      background-size: 32px;
+      // background-position: 110% -26px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 32px;
+      width: 100%;
+    }
+  }
+}
