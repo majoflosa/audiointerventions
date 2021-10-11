@@ -93,6 +93,11 @@
   @include util-constraint-lg();
 }
 
+@mixin util-constraint-custom($custom) {
+  max-width: $custom;
+  margin: 0 auto;
+}
+
 @mixin util-full-width() {
   width: 100%;
 }

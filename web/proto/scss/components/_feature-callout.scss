@@ -11,7 +11,7 @@
     flex-shrink: 1;
     flex-grow: 0;
     flex-basis: 50%;
-    padding: 75px 0 75px 75px;
+    padding: 75px 0 95px 75px;
     background-color: $color-bg;
     box-sizing: border-box;
     display: flex;
@@ -20,7 +20,7 @@
     position: relative;
 
     .feature-callout--reverse & {
-      padding: 75px 75px 75px 0;
+      padding: 75px 75px 95px 0;
       justify-content: flex-start;
     }
 
@@ -47,6 +47,8 @@
   }
 
   &__title {
+    @include type-title-2();
+
     &:after {
       display: block;
       content: "";
@@ -57,24 +59,24 @@
     }
   }
 
+  &__body {
+    @include type-body-2();
+  }
+
   // &__footer {
   //   text-align: right;
   // }
 
   &__cta-btn {
-    display: inline-block;
-    // width: 100%;
-    box-sizing: border-box;
+    @include btn();
     padding: 16px 48px;
-    color: white;
-    background-color: $color-primary;
     text-transform: uppercase;
     font-size: 20px;
     margin-top: 32px;
-    font-family: $font-body;
   }
 
   .grid-flag {
+    opacity: 0.5;
     position: absolute;
     // left: 0;
     // right: auto;

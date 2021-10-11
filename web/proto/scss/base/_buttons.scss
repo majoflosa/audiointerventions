@@ -18,6 +18,7 @@ button {
   padding: 12px 30px;
   transition: all 0.25s ease-in-out;
   display: inline-block;
+  text-decoration: none !important;
 
   @if $type == primary {
     color: white;
