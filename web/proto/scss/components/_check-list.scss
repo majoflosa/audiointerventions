@@ -1,0 +1,46 @@
+.check-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &__item {
+    @include font-line-size(22, 28);
+    flex-basis: 33%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin: 0 0 rem(16);
+    position: relative;
+    padding-left: rem(36);
+    box-sizing: border-box;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      width: rem(20);
+      height: rem(20);
+      margin-right: rem(16);
+      margin-top: rem(2);
+      border-radius: 50%;
+      border: 2px solid $color-primary;
+      background-color: white;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: rem(10);
+      left: rem(7);
+      width: rem(10);
+      height: rem(6);
+      box-sizing: border-box;
+      border-bottom: 2px solid $color-primary;
+      border-left: 2px solid $color-primary;
+      transform: rotate(-45deg);
+    }
+  }
+}
