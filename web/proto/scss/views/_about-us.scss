@@ -1,5 +1,4 @@
-.about-us-awards {
-  .section-header__title {
-    // margin-bottom: rem(50);
-  }
+.about-us-gallery {
+  @include util-constraint-custom(900px);
+  padding-bottom: rem(75);
 }
