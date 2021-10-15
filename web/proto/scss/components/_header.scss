@@ -60,7 +60,14 @@
 
   &__link {
     display: inline-block;
-    color: white;
+    color: $color-light;
+    text-transform: uppercase;
+    font-weight: 300;
+
+    &.active {
+      color: $color-lightest;
+      font-weight: 700;
+    }
 
     & + & {
       margin-left: 24px;

@@ -39,6 +39,9 @@
     @include util-constraint-lg();
     box-sizing: border-box;
 
+    .section-wrap--wide & {
+      max-width: 92%;
+    }
     .section-wrap--full-width & {
       max-width: 100%;
     }

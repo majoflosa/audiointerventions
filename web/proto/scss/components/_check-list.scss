@@ -4,11 +4,12 @@
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: flex-start;
 
   &__item {
-    @include font-line-size(22, 28);
-    flex-basis: 33%;
+    @include font-line-size(18, 24);
+    flex-basis: 30%;
     flex-grow: 0;
     flex-shrink: 0;
     margin: 0 0 rem(24);
@@ -16,26 +17,35 @@
     padding-left: rem(40);
     box-sizing: border-box;
 
+    .check-list--bg-round & {
+      background-color: white;
+      box-sizing: border-box;
+      padding: rem(16) rem(16) rem(16) rem(56);
+      border-radius: 99px;
+      box-shadow: 0 0 8px rgba(black, 0.1);
+    }
+
     &::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 50%;
+      left: rem(16);
+      transform: translate(0, -50%);
       display: inline-block;
       width: rem(20);
       height: rem(20);
       margin-right: rem(16);
-      margin-top: rem(2);
+      // margin-top: rem(2);
       border-radius: 50%;
       border: 2px solid $color-primary;
       background-color: $color-primary;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      // box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     }
     &::after {
       content: "";
       position: absolute;
-      top: rem(10);
-      left: rem(7);
+      top: rem(24);
+      left: rem(23);
       width: rem(10);
       height: rem(6);
       box-sizing: border-box;

@@ -9,7 +9,8 @@
 .card {
   padding: 0 16px 16px;
   box-sizing: border-box;
-  flex: 1 1 33%;
+  flex: 0 0 33%;
+  margin-bottom: 32px;
 
   &--full-width {
     flex-basis: 100%;
@@ -23,6 +24,17 @@
     min-height: 300px;
     height: 100%;
     box-shadow: 8px 8px 0 0px rgba($color-primary, 1);
+
+    .card--light & {
+      background-color: white;
+      // box-shadow: 4px 8px 16px 0px rgba(black, 0.05);
+      box-shadow: none;
+    }
+    .card--gray & {
+      background-color: $color-lighter;
+      // box-shadow: 4px 8px 16px 0px rgba(black, 0.05);
+      box-shadow: none;
+    }
   }
 
   &__header {
@@ -40,10 +52,23 @@
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
+
+    &--contain {
+      width: auto;
+      box-sizing: border-box;
+      margin-left: 32px;
+      margin-right: 32px;
+      background-size: contain;
+      border-bottom: 1px solid $color-lightest;
+    }
   }
 
   &__title {
     @include type-title-3();
+
+    .card--light &, .card--gray & {
+      color: $color-bg;
+    }
 
     .card--image & {
       padding: 32px 32px 0;
@@ -66,6 +91,12 @@
   }
 
   &__body-text {
+    font-weight: 300;
+
+    .card--light &, .card--gray & {
+      color: $color-bg;
+    }
+
     p:last-child {
       margin: 0;
     }
@@ -73,6 +104,10 @@
 
   &__footer {
     margin-top: 32px;
+
+    .card--light &, .card--gray & {
+      color: $color-bg;
+    }
   }
   
   &__footer-btn {
@@ -86,13 +121,8 @@
     font-style: italic;
     position: relative;
 
-    span:first-child {
-      display: none;
-    }
-
     .grid-flag {
       background-size: 32px;
-      // background-position: 110% -26px;
       position: absolute;
       top: 0;
       right: 0;
