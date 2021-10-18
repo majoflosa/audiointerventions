@@ -124,3 +124,20 @@
   //   clear: both;
   // }
 }
+
+.section-text {
+  @include type-body-2();
+  color: white;
+
+  &--big {
+    @include type-body-1();
+  }
+
+  &--small {
+    // @include type-body-3();
+  }
+
+  .section-wrap--light &, .section-wrap--gray & {
+    color: $color-bg;
+  }
+}
