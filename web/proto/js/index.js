@@ -62,5 +62,5 @@ class Tabs {
   }
 }
 
-// const tabsEl = document.querySelector('.tabs');
-// const tabs = new Tabs(tabsEl);
+const tabsEl = document.querySelector('.tabs');
+const tabs = tabsEl && new Tabs(tabsEl);
