@@ -6,6 +6,7 @@
     align-items: center;
     background-color: $color-bg-light;
     padding: rem(24) rem(32);
+    border-top: 1px solid lighten($color-bg-light, 35%);
     border-bottom: 1px solid lighten($color-bg-light, 35%);
   }
 
