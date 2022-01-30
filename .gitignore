@@ -1,2 +1,14 @@
 node_modules
-assets
+external-assets
+.ddev
+wp-admin
+wp-includes
+wp/wp-content/plugins
+wp/wp-content/uploads
+wp/wp-content/index.php
+wp/wp-content/themes/twenty*
+wp/index.php
+wp/license.txt
+wp/readme.html
+wp/wp-*.php
+wp/xmlrpc.php
