@@ -1,0 +1,63 @@
+@mixin type-title-1() {
+  font-family: $font-header;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 72px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 32px;
+}
+
+@mixin type-title-2() {
+  font-family: $font-header;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 44px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+
+@mixin type-title-3() {
+  font-family: $font-header;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 32px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+@mixin type-title-4() {
+  font-family: $font-header;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+@mixin type-body-1() {
+  font-family: $font-body;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+@mixin type-body-2() {
+  font-family: $font-body;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+@mixin type-small-1() {
+  font-family: $font-body;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.2;
+}

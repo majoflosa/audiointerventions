@@ -1,0 +1,4 @@
+.about-us-gallery {
+  @include util-constraint-custom(900px);
+  padding-bottom: rem(75);
+}

@@ -1,0 +1,144 @@
+.section-wrap {
+  background-color: $color-bg;
+  padding: rem(75) 0;
+
+  &--bg-img {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+    
+    &:before {
+      background-color: rgba($color-bg, 0.33);
+      background-image: linear-gradient(30deg, rgba($color-primary, 0.18), rgba($color-bg, 0.18), rgba($color-bg, 0.18));
+    }
+  }
+
+  &--big {
+    padding: rem(120) 0;
+  }
+
+  &--light {
+    background-color: white;  
+  }
+  &--gray {
+    background-color: $color-lighter;  
+  }
+
+  &:before {
+    background-image: linear-gradient(30deg, rgba($color-primary, 0.18), rgba($color-bg, 0.09), rgba($color-bg, 0.9));
+
+    .section-wrap--bg-img & {
+      background-image: linear-gradient(30deg, rgba($color-primary, 0.82), rgba($color-bg, 0.95));
+    }
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    @include util-constraint-lg();
+    box-sizing: border-box;
+
+    .section-wrap--wide & {
+      max-width: 92%;
+    }
+    .section-wrap--full-width & {
+      max-width: 100%;
+    }
+  }
+
+  &__caption {
+    padding-bottom: 4px;
+    margin-bottom: 20px;
+  }
+}
+
+.section-header {
+
+  &__title {
+    @include type-title-2();
+    margin-top: 0;
+    margin-bottom: rem(75);
+    color: white;
+
+    .section-wrap--light &,
+    .section-wrap--gray & {
+      color: $color-bg;
+    }
+
+    &--big {
+      @include type-title-1();
+    }
+
+    &--left {
+      @include util-align-left();
+    }
+    &--right {
+      @include util-align-right();
+    }
+    &--center {
+      @include util-align-center();
+    }
+
+    &--hero-title {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.grid-flag {
+  width: 90px;
+  height: 30px;
+  background-size: 30px;
+  display: block;
+  // background-image: url('../../proto/img/grid-flag.svg');
+  // background-color: white;
+
+  &--square {
+    width: 30px;
+    height: 30px;
+  }
+
+  &--horizontal {
+    height: 30px;
+    width: 100%;
+    background-repeat: repeat-x;
+  }
+
+  &--vertical {
+    width: 30px;
+    height: 100%;
+    background-repeat: repeat-y;
+  }
+
+  &--left {
+    float: left;
+  }
+  &--right {
+    float: right;
+  }
+
+  // &:after {
+  //   content: "";
+  //   display: block;
+  //   clear: both;
+  // }
+}
+
+.section-text {
+  @include type-body-2();
+  color: white;
+  line-height: 1.4;
+
+  &--big {
+    @include type-body-1();
+  }
+
+  &--small {
+    // @include type-body-3();
+  }
+
+  .section-wrap--light &, .section-wrap--gray & {
+    color: $color-bg;
+  }
+}

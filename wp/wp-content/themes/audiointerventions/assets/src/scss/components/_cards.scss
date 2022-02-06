@@ -1,0 +1,133 @@
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-left: -16px;
+  margin-right: -16px;
+}
+
+.card {
+  padding: 0 16px 16px;
+  box-sizing: border-box;
+  flex: 0 0 33%;
+  margin-bottom: 32px;
+
+  &--full-width {
+    flex-basis: 100%;
+  }
+
+  &__inner {
+    background-color: $color-bg-lighter;
+    color: $color-lightest;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    height: 100%;
+    box-shadow: 8px 8px 0 0px rgba($color-primary, 1);
+
+    .card--light & {
+      background-color: white;
+      // box-shadow: 4px 8px 16px 0px rgba(black, 0.05);
+      box-shadow: none;
+    }
+    .card--gray & {
+      background-color: $color-lighter;
+      // box-shadow: 4px 8px 16px 0px rgba(black, 0.05);
+      box-shadow: none;
+    }
+  }
+
+  &__header {
+    padding: 32px 32px 0;
+
+    .card--image & {
+      padding: 0;
+    }
+  }
+
+  &__image-wrap {
+    width: 100%;
+    padding-bottom: 9 / 16 * 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+
+    &--contain {
+      width: auto;
+      box-sizing: border-box;
+      margin-left: 32px;
+      margin-right: 32px;
+      background-size: contain;
+      border-bottom: 1px solid $color-lightest;
+    }
+  }
+
+  &__title {
+    @include type-title-3();
+
+    .card--light &, .card--gray & {
+      color: $color-bg;
+    }
+
+    .card--image & {
+      padding: 32px 32px 0;
+    }
+
+    &:after {
+      display: block;
+      content: "";
+      width: 40px;
+      height: 2px;
+      background-color: $color-primary;
+      margin-top: 20px;
+    }
+  }
+
+  &__body {
+    padding: 0 32px;
+    font-size: 18px;
+    flex-grow: 1;
+  }
+
+  &__body-text {
+    font-weight: 300;
+
+    .card--light &, .card--gray & {
+      color: $color-bg;
+    }
+
+    p:last-child {
+      margin: 0;
+    }
+  }
+
+  &__footer {
+    margin-top: 32px;
+
+    .card--light &, .card--gray & {
+      color: $color-bg;
+    }
+  }
+  
+  &__footer-btn {
+    @include btn();
+    margin: 0 32px;
+  }
+
+  &__footer-content {
+    margin-top: 32px;
+    padding: 20px 32px 12px;
+    font-style: italic;
+    position: relative;
+
+    .grid-flag {
+      background-size: 32px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 32px;
+      width: 100%;
+    }
+  }
+}

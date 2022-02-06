@@ -1,0 +1,21 @@
+.services-lists {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  &__item {
+    flex-basis: 33%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    padding-left: rem(10);
+    padding-right: rem(10);
+  }
+
+  &__item-title {
+    @include type-title-3();
+    color: $color-primary;
+    margin-bottom: rem(24);
+  }
+}

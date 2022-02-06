@@ -11,7 +11,16 @@ if ( $is_dev ) {
     $theme_url = get_template_directory_uri();
 }
 define( 'THEME_URL', $theme_url );
+define( 'ASSETS_URL', $theme_url . '/assets/');
 
 // general theme setup
 require_once 'inc/enqueue.php';
 require_once 'inc/theme-setup.php';
+
+// custom posts and taxonomies
+// theme options
+// meta boxes
+// taxonomy meta
+// helpers
+// actions
+// filters
