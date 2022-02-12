@@ -20,6 +20,10 @@ require_once 'inc/walkers/walker-header-nav.php';
 
 // custom posts and taxonomies
 // theme options
+$audint_theme_settings = [];
+require_once 'inc/theme-settings/main-settings.php';
+require_once 'inc/theme-settings/main-social.php';
+
 // meta boxes
 // taxonomy meta
 // helpers
