@@ -23,5 +23,7 @@ require_once 'inc/walkers/walker-header-nav.php';
 // meta boxes
 // taxonomy meta
 // helpers
+require_once 'inc/helpers/defaults.php';
+
 // actions
 // filters

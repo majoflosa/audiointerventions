@@ -41,13 +41,13 @@
         wp_nav_menu( $args ); 
       ?>
       <div class="header__social">
-        <a href="#" class="header__social-link">
+        <a href="<?php echo audint_get_default( 'facebook' ); ?>" class="header__social-link" target="_blank" title="Find Audio Interventions on Facebook">
           <?php get_template_part( 'partials/svg/facebook' ); ?>
         </a>
-        <a href="#" class="header__social-link">
+        <a href="<?php echo audint_get_default( 'instagram' ); ?>" class="header__social-link" target="_blank" title="Find Audio Interventions on Instagram">
           <?php get_template_part( 'partials/svg/instagram' ); ?>
         </a>
-        <a href="#" class="header__social-link">
+        <a href="<?php echo audint_get_default( 'youtube' ); ?>" class="header__social-link" target="_blank" title="Find Audio Interventions on YouTube">
           <?php get_template_part( 'partials/svg/youtube' ); ?>
         </a>
       </div>
