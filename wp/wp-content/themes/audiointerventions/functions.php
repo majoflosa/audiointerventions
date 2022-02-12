@@ -16,6 +16,7 @@ define( 'ASSETS_URL', $theme_url . '/assets/');
 // general theme setup
 require_once 'inc/enqueue.php';
 require_once 'inc/theme-setup.php';
+require_once 'inc/walkers/walker-header-nav.php';
 
 // custom posts and taxonomies
 // theme options
