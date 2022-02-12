@@ -4,11 +4,16 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-    entry: './assets/src/js/index.js',
+    // entry: './assets/src/js/index.js',
+    entry: {
+        main: './assets/src/js/index.js',
+        admin: './assets/admin/js/index.js',
+    },
     
     output: {
         path: __dirname,
-        filename: 'assets/dist/js/main.js',
+        // filename: 'assets/dist/js/main.js',
+        filename: 'assets/dist/js/[name].js',
         publicPath: '/assets/img/'
     },
 
@@ -37,7 +42,8 @@ module.exports = {
 
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'assets/dist/css/main.css',
+            // filename: 'assets/dist/css/main.css',
+            filename: 'assets/dist/css/[name].css',
         }),
         new BrowserSyncPlugin({
             files: [
