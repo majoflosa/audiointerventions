@@ -31,3 +31,11 @@ require_once 'inc/helpers/defaults.php';
 
 // actions
 // filters
+
+
+// other
+function audint_print_r( $var ) {
+    echo '<pre>';
+    print_r( $var );
+    echo '</pre>';
+}
