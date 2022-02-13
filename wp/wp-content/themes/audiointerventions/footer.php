@@ -3,6 +3,8 @@
  * Main site footer
  */
 
+$logo = audint_get_option_or_default( 'global', 'logo' );
+
 $social_links = [
   'facebook'    => audint_get_option_or_default( 'social', 'facebook' ),
   'instagram'   => audint_get_option_or_default( 'social', 'instagram' ),
@@ -44,10 +46,10 @@ $social_links = [
 
         <div class="footer__widget footer__widget-logo">
           <h4 class="footer__widget-title">
-            <img src="<?php echo ASSETS_URL . '/img/audio-interventions.png'; ?>" alt="Logo">
+            <img src="<?php echo $logo; ?>" alt="Audio Interventions Logo">
           </h4>
           <div class="footer__widget-logo-text">
-            <p>Your Personalized Car Audio Awaits</p>
+            <p><?php echo bloginfo( 'description' ); ?></p>
             <span class="service">Auto Services - </span>
             <span class="service">Home Services - </span>
             <span class="service">Marine Services</span>

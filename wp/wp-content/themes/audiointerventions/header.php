@@ -3,6 +3,8 @@
  * Main site header
  */
 
+$logo = audint_get_option_or_default( 'global', 'logo' );
+
 $social_links = [
   'facebook'    => audint_get_option_or_default( 'social', 'facebook' ),
   'instagram'   => audint_get_option_or_default( 'social', 'instagram' ),
@@ -42,7 +44,7 @@ $social_links = [
 
   <header class="header">
     <div class="header__left">
-      <img src="<?php echo ASSETS_URL . '/img/audio-interventions.png'; ?>" alt="Logo">
+      <img src="<?php echo $logo; ?>" alt="Audio Interventions Logo">
     </div>
     <div class="header__right">
       <?php 

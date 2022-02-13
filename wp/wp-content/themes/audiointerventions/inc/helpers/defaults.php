@@ -1,20 +1,16 @@
 <?php
 
 $audint_defaults = [
+  // global
+  'global'  => [
+    'logo'  => ASSETS_URL . '/img/audio-interventions.png',
+  ],
   // social
-  // 'facebook'  => 'https://www.facebook.com/AudioInterventions239/',
-  // 'instagram' => 'https://www.instagram.com/audiointerventions/',
-  // 'youtube'   => '',
   'social'    => [
     'facebook'  => 'https://www.facebook.com/AudioInterventions239/',
     'instagram' => 'https://www.instagram.com/audiointerventions/',
-    // 'youtube'   => '',
   ],
   // contact
-  // 'address'   => '24201 S. Tamiami Trl. suite #1 \n Bonita Springs, FL 34134',
-  // 'phone'     => '239-495-0586',
-  // 'fax'       => '239-390-2150',
-  // 'email'     => 'mario@audiointerventions.com',
   'contact'   => [
     'address'   => '24201 S. Tamiami Trl. suite #1 \n Bonita Springs, FL 34134',
     'phone'     => '239-495-0586',
