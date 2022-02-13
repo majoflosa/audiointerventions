@@ -38,7 +38,7 @@ function audint_theme_settings_cb() {
   <div class="wrap main-settings">
     <h1>Audio Interventions - Main Theme Settings</h1>
 
-    <form action="options.php" method="post">
+    <form action="options.php" method="post" class="main-settings__form">
       <?php
         settings_fields( 'audint_main_group' );
         do_settings_sections( 'audint_main_settings_page' );

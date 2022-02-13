@@ -18,17 +18,19 @@ require_once 'inc/enqueue.php';
 require_once 'inc/theme-setup.php';
 require_once 'inc/walkers/walker-header-nav.php';
 
+// helpers
+require_once 'inc/helpers/defaults.php';
+
 // custom posts and taxonomies
 // theme options
 $audint_theme_settings = [];
 require_once 'inc/theme-settings/main-settings.php';
 require_once 'inc/theme-settings/main-global.php';
+require_once 'inc/theme-settings/main-hours.php';
 require_once 'inc/theme-settings/main-social.php';
 
 // meta boxes
 // taxonomy meta
-// helpers
-require_once 'inc/helpers/defaults.php';
 
 // actions
 // filters

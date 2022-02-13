@@ -1,52 +1,7 @@
 <?php
 
-$audint_defaults = [
-  // global
-  'global'  => [
-    'logo'  => ASSETS_URL . '/img/audio-interventions.png',
-  ],
-  // social
-  'social'    => [
-    'facebook'  => 'https://www.facebook.com/AudioInterventions239/',
-    'instagram' => 'https://www.instagram.com/audiointerventions/',
-  ],
-  // contact
-  'contact'   => [
-    'address'   => '24201 S. Tamiami Trl. suite #1 \n Bonita Springs, FL 34134',
-    'phone'     => '239-495-0586',
-    'fax'       => '239-390-2150',
-    'email'     => 'mario@audiointerventions.com',
-  ],
-  // schedule
-  'hours' => [
-    'Monday' => [ 
-      'open'  => [ 'h' => 10, 'm' => 0, 'ampm' => 'AM' ],
-      'close' => [ 'h' => 6, 'm' => 0, 'ampm' => 'PM' ],
-    ],
-    'Monday' => [ 
-      'open'  => [ 'h' => 10, 'm' => 0, 'ampm' => 'AM' ],
-      'close' => [ 'h' => 6, 'm' => 0, 'ampm' => 'PM' ],
-    ],
-    'Monday' => [ 
-      'open'  => [ 'h' => 10, 'm' => 0, 'ampm' => 'AM' ],
-      'close' => [ 'h' => 6, 'm' => 0, 'ampm' => 'PM' ],
-    ],
-    'Monday' => [ 
-      'open'  => [ 'h' => 10, 'm' => 0, 'ampm' => 'AM' ],
-      'close' => [ 'h' => 6, 'm' => 0, 'ampm' => 'PM' ],
-    ],
-    'Monday' => [ 
-      'open'  => [ 'h' => 10, 'm' => 0, 'ampm' => 'AM' ],
-      'close' => [ 'h' => 6, 'm' => 0, 'ampm' => 'PM' ],
-    ],
-    'Saturday' => [ 
-      'open'  => [ 'h' => 9, 'm' => 0, 'ampm' => 'AM' ],
-      'close' => [ 'h' => 3, 'm' => 0, 'ampm' => 'PM' ],
-    ],
-    'Sunday' => null,
-  ]
-  //
-];
+// Each group of defaults are set in each settings file. (Ex: inc/theme-settings/main-global.php)
+$audint_defaults = [];
 
 /**
  * Returns a default value, or null if not set.

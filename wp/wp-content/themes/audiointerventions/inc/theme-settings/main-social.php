@@ -3,6 +3,11 @@
 /**
  * Main Settings - Social Media Settings section
  */
+$audint_defaults['social'] = [
+  'facebook'  => 'https://www.facebook.com/AudioInterventions239/',
+  'instagram' => 'https://www.instagram.com/audiointerventions/',
+];
+
 $audint_theme_settings['main']['social'] = [
   'id'        => 'audint_settings_social',
   'title'     => 'Social Media',

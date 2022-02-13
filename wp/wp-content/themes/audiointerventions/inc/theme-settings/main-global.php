@@ -3,6 +3,10 @@
 /**
  * Main Settings - Global settings
  */
+$audint_defaults['global'] = [
+  'logo'  => ASSETS_URL . '/img/audio-interventions.png',
+];
+ 
 $audint_theme_settings['main']['global'] = [
   'id'        => 'audint_settings_global',
   'title'     => 'General',
