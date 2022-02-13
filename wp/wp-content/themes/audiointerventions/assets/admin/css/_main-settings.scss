@@ -1,0 +1,12 @@
+.main-settings {
+  &__text-input {
+    min-width: 400px;
+    display: inline-block;
+    margin-right: 8px;
+  }
+
+  &__checkbox-input {
+    display: inline-block;
+    margin-right: 8px;
+  }
+}

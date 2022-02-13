@@ -1,3 +1,18 @@
+<?php
+/**
+ * Main site footer
+ */
+
+$social_links = [
+  'facebook'    => audint_get_option_or_default( 'social', 'facebook' ),
+  'instagram'   => audint_get_option_or_default( 'social', 'instagram' ),
+  'youtube'     => audint_get_option_or_default( 'social', 'youtube' ),
+  'linkedin'    => audint_get_option_or_default( 'social', 'linkedin' ),
+  'twitter'     => audint_get_option_or_default( 'social', 'twitter' ),
+];
+
+?>
+
 <footer class="footer">
     <div class="footer__top">
       <nav class="footer__nav">
@@ -8,16 +23,19 @@
         <a href="./photo-gallery/" class="footer__nav-link">Photos</a>
         <a href="./contact-us/" class="footer__nav-link">Contact Us</a>
       </nav>
+
       <div class="footer__social">
-        <a href="<?php echo audint_get_default( 'facebook' ); ?>" target="_blank" title="Find Audio Interventions on Facebook" class="footer__social-link">
-          <?php get_template_part( 'partials/svg/facebook' ); ?>
-        </a>
-        <a href="<?php echo audint_get_default( 'instagram' ); ?>" target="_blank" title="Find Audio Interventions on Instagram" class="footer__social-link">
-          <?php get_template_part( 'partials/svg/instagram' ); ?>
-        </a>
-        <a href="<?php echo audint_get_default( 'youtube' ); ?>" target="_blank" title="Find Audio Interventions on YouTube" class="footer__social-link">
-          <?php get_template_part( 'partials/svg/youtube' ); ?>
-        </a>
+        <?php
+          foreach ( $social_links as $social => $url ) :
+            if ( $url ) :
+        ?>
+          <a href="<?php echo $url; ?>" target="_blank" title="Find Audio Interventions on <?php echo $social; ?>" class="footer__social-link">
+            <?php get_template_part( 'partials/svg/' . $social ); ?>
+          </a>
+        <?php
+            endif;
+          endforeach;
+        ?>
       </div>
     </div>
 

@@ -2,19 +2,19 @@
 
 $audint_defaults = [
   // social
-  'facebook'  => 'https://www.facebook.com/AudioInterventions239/',
-  'instagram' => 'https://www.instagram.com/audiointerventions/',
-  'youtube'   => '',
+  // 'facebook'  => 'https://www.facebook.com/AudioInterventions239/',
+  // 'instagram' => 'https://www.instagram.com/audiointerventions/',
+  // 'youtube'   => '',
   'social'    => [
     'facebook'  => 'https://www.facebook.com/AudioInterventions239/',
     'instagram' => 'https://www.instagram.com/audiointerventions/',
-    'youtube'   => '',
+    // 'youtube'   => '',
   ],
   // contact
-  'address'   => '24201 S. Tamiami Trl. suite #1 \n Bonita Springs, FL 34134',
-  'phone'     => '239-495-0586',
-  'fax'       => '239-390-2150',
-  'email'     => 'mario@audiointerventions.com',
+  // 'address'   => '24201 S. Tamiami Trl. suite #1 \n Bonita Springs, FL 34134',
+  // 'phone'     => '239-495-0586',
+  // 'fax'       => '239-390-2150',
+  // 'email'     => 'mario@audiointerventions.com',
   'contact'   => [
     'address'   => '24201 S. Tamiami Trl. suite #1 \n Bonita Springs, FL 34134',
     'phone'     => '239-495-0586',
@@ -22,7 +22,7 @@ $audint_defaults = [
     'email'     => 'mario@audiointerventions.com',
   ],
   // schedule
-  'schedule' => [
+  'hours' => [
     'Monday' => [ 
       'open'  => [ 'h' => 10, 'm' => 0, 'ampm' => 'AM' ],
       'close' => [ 'h' => 6, 'm' => 0, 'ampm' => 'PM' ],
@@ -52,8 +52,23 @@ $audint_defaults = [
   //
 ];
 
-function audint_get_default( $key ) {
+function audint_get_default( $group_name, $option_name ) {
   global $audint_defaults;
 
-  return $audint_defaults[$key] ? $audint_defaults[$key] : null;
+  if ( ! isset( $audint_defaults[$group_name] ) ) return null;
+  if ( ! isset( $audint_defaults[$group_name][$option_name] ) ) return null;
+
+  return $audint_defaults[$group_name][$option_name];
+}
+
+function audint_get_option_or_default( $group_name, $option_name ) {
+  global $audint_defaults;
+
+  $option_value = get_option( $group_name . '_' . $option_name, 'option_not_set' );
+
+  if ( $option_value === 'option_not_set' ) {
+    return audint_get_default( $group_name, $option_name );
+  }
+
+  return $option_value;
 }

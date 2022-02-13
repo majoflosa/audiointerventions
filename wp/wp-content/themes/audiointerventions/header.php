@@ -1,3 +1,18 @@
+<?php
+/**
+ * Main site header
+ */
+
+$social_links = [
+  'facebook'    => audint_get_option_or_default( 'social', 'facebook' ),
+  'instagram'   => audint_get_option_or_default( 'social', 'instagram' ),
+  'youtube'     => audint_get_option_or_default( 'social', 'youtube' ),
+  'linkedin'    => audint_get_option_or_default( 'social', 'linkedin' ),
+  'twitter'     => audint_get_option_or_default( 'social', 'twitter' ),
+];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,16 +55,19 @@
         );
         wp_nav_menu( $args ); 
       ?>
+
       <div class="header__social">
-        <a href="<?php echo audint_get_default( 'facebook' ); ?>" class="header__social-link" target="_blank" title="Find Audio Interventions on Facebook">
-          <?php get_template_part( 'partials/svg/facebook' ); ?>
-        </a>
-        <a href="<?php echo audint_get_default( 'instagram' ); ?>" class="header__social-link" target="_blank" title="Find Audio Interventions on Instagram">
-          <?php get_template_part( 'partials/svg/instagram' ); ?>
-        </a>
-        <a href="<?php echo audint_get_default( 'youtube' ); ?>" class="header__social-link" target="_blank" title="Find Audio Interventions on YouTube">
-          <?php get_template_part( 'partials/svg/youtube' ); ?>
-        </a>
+        <?php
+          foreach ( $social_links as $social => $url ) :
+            if ( $url ) :
+        ?>
+              <a href="<?php echo $url; ?>" class="header__social-link" target="_blank" title="Find Audio Interventions on <?php echo ucfirst( $social ); ?>">
+                <?php get_template_part( 'partials/svg/' . $social ); ?>
+              </a>
+        <?php 
+            endif;
+          endforeach;
+        ?>
       </div>
     </div>
     <div class="grid-flag" style="background-image: url('<?php echo ASSETS_URL . './img/grid-flag.svg'; ?>');"></div>

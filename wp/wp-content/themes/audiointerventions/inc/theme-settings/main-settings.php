@@ -35,7 +35,7 @@ function audint_theme_settings_cb() {
   settings_errors( 'audint_settings_messages' );
   ?>
 
-  <div class="wrap">
+  <div class="wrap main-settings">
     <h1>Audio Interventsion - Main Theme Settings</h1>
 
     <form action="options.php" method="post">
