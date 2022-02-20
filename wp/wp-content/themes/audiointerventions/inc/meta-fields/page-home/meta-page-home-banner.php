@@ -20,15 +20,15 @@ function audint_home_banner_cb( $post ) {
     <p class="description">Settings for main banner shown on home page.</p>
     <hr>
 
-    <div class="meta-row audint-meta-row">
+    <div class="meta-row audint-meta-row" id="audint-meta-home-banner">
       <div class="meta-td audint-meta-td">
 
         <div class="audint-meta-field-group inline">
           <label for="audint_home_banner_heading" class="audint-meta-field-group__left">
             <span>Heading</span>
           </label>
-          <div class="audint-meta-field-group__right">
-            <input type="text" name="audint_home_banner_heading" id="audint_home_banner_heading" />
+          <div class="audint-meta-field-group__right grow">
+            <input type="text" name="audint_home_banner_heading" id="audint_home_banner_heading" autocomplete="off" value="This is an initial value" />
           </div>
         </div>
 
@@ -46,7 +46,8 @@ function audint_home_banner_cb( $post ) {
             <span>Click on the words you want to display in red.</span>
           </label>
           <div class="audint-meta-field-group__right grow">
-            <input type="hidden" name="audint_home_banner_heading_colored_words" id="audint_home_banner_heading_colored_words" />
+            <div id="audint_home_banner_heading_words" class="audint-home-banner-heading-words"></div>
+            <input type="hidden" name="audint_home_banner_heading_colored_words" id="audint_home_banner_heading_colored_words" value="3" />
           </div>
         </div>
 
@@ -60,8 +61,8 @@ function audint_home_banner_cb( $post ) {
         <div class="audint-meta-field-group inline">
           <label for="audint_home_banner_background_image" class="audint-meta-field-group__left">Choose image to display on the banner</label>
           <div class="audint-meta-field-group__right grow">
-            <button class="is-primary">Choose Image</button>
-            <div class="audint-meta-home-banner-preview"></div>
+            <button id="audint_home_banner_image_button" class="is-primary">Choose Image</button>
+            <div id="audint_home_banner_image_preview" class="audint-meta-home-banner-preview"></div>
             <input type="hidden" name="audint_home_banner_background_image" id="audint_home_banner_background_image">
           </div>
         </div>

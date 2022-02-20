@@ -1,5 +1,5 @@
-import './test';
+import './meta-home/meta-home-banner';
 
 import '../css/admin.scss';
 
-console.log('this is admin index.js');
+window.audintAdmin = window.audintAdmin || {};

@@ -1,0 +1,11 @@
+.audint-home-banner-heading-words {
+  span {
+    display: inline-block;
+    margin-right: 6px;
+    cursor: pointer;
+
+    &.highlight {
+      color: red;
+    }
+  }
+}
