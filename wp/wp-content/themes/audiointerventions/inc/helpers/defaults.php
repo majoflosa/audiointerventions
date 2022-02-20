@@ -1,8 +1,5 @@
 <?php
 
-// Each group of defaults are set in each settings file. (Ex: inc/theme-settings/main-global.php)
-$audint_defaults = [];
-
 /**
  * Returns a default value, or null if not set.
  * 

@@ -19,6 +19,8 @@ require_once 'inc/theme-setup.php';
 require_once 'inc/walkers/walker-header-nav.php';
 
 // helpers
+// Each group of defaults are set in each settings file. (Ex: inc/theme-settings/main-global.php)
+$audint_defaults = [];
 require_once 'inc/helpers/defaults.php';
 
 // custom posts and taxonomies
@@ -30,6 +32,9 @@ require_once 'inc/theme-settings/main-hours.php';
 require_once 'inc/theme-settings/main-social.php';
 
 // meta boxes
+$audint_meta_boxes = [];
+require_once 'inc/meta-fields/meta-page-home.php';
+
 // taxonomy meta
 
 // actions
@@ -41,4 +46,15 @@ function audint_print_r( $var ) {
     echo '<pre>';
     print_r( $var );
     echo '</pre>';
+}
+
+function audint_admin_is_page_template( $template, $id ) {
+    global $post;
+    if ( ! $id ) {
+        $id = $post->ID;
+    }
+
+    $full_template = 'page-templates/' . $template;
+
+    return $full_template === get_post_meta( $id, '_wp_page_template', true );
 }

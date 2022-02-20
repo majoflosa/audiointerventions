@@ -1,0 +1,52 @@
+.audint-meta-field-group {
+  margin-bottom: 25px;
+
+  label {
+    display: block;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"] {
+    display: block;
+    min-width: 300px;
+  }
+
+  &.inline {
+    display: flex;
+    align-items: center;
+    
+    .audint-meta-field-group__left {
+      margin-right: 8px;
+      flex: 0 0 33%;
+      padding: 0 10px 0 0;
+      box-sizing: border-box;
+    }
+
+    .audint-meta-field-group__right {
+      &.grow {
+        flex-grow: 1;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="number"],
+      textarea {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+  
+}
+
+.audint-meta-checkbox-field {
+  display: flex;
+  align-items: center;
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    display: inline-block;
+    margin-right: 8px;
+  }
+}
