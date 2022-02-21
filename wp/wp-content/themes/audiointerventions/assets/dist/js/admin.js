@@ -2,56 +2,59 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./assets/admin/js/meta-home/meta-home-banner.js":
-/*!*******************************************************!*\
-  !*** ./assets/admin/js/meta-home/meta-home-banner.js ***!
-  \*******************************************************/
+/***/ "./assets/admin/js/meta-global/meta-bicolor-text.js":
+/*!**********************************************************!*\
+  !*** ./assets/admin/js/meta-global/meta-bicolor-text.js ***!
+  \**********************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-class MetaHomeBanner {
+class BicolorTextSettings {
   constructor(el) {
     this.dom = {
       el
     };
-    this.onHeadingInputChange = this.onHeadingInputChange.bind(this);
+    this.onTextInputChange = this.onTextInputChange.bind(this);
     this.onColoredWordsClick = this.onColoredWordsClick.bind(this);
+    this.onBicolorInputChange = this.onBicolorInputChange.bind(this);
     this.setDomElements();
     this.setProperties();
     this.bindEvents();
     this.renderColoredWords();
+    this.dom.coloredWordsWrap.classList.toggle('hidden', !this.dom.bicolorInput.checked);
   }
 
   setDomElements() {
-    this.dom.headingInput = document.body.querySelector('#audint_home_banner_heading');
-    this.dom.bicolorInput = document.body.querySelector('#audint_home_banner_heading_bicolor');
-    this.dom.coloredWordsInput = document.body.querySelector('#audint_home_banner_heading_colored_words');
-    this.dom.coloredWords = document.body.querySelector('#audint_home_banner_heading_words');
-    this.dom.imageButton = document.body.querySelector('#audint_home_banner_image_button');
-    this.dom.imagePreview = document.body.querySelector('#audint_home_banner_image_preview');
+    this.dom.textInput = document.body.querySelector('.js-bicolor-text__text-input');
+    this.dom.bicolorInput = document.body.querySelector('.js-bicolor-text__checkbox-input');
+    this.dom.coloredWordsInput = document.body.querySelector('.js-bicolor-text__words-input');
+    this.dom.coloredWords = document.body.querySelector('.js-bicolor-text__words');
+    this.dom.coloredWordsWrap = document.body.querySelector('.js-bicolor-text__words-wrap'); // this.dom.imageButton = document.body.querySelector('#audint_home_banner_image_button');
+    // this.dom.imagePreview = document.body.querySelector('#audint_home_banner_image_preview');
   }
 
   setProperties() {
     // array of strings; each word in the heading text
-    this.headingWords = this.dom.headingInput.value.split(' '); // array of integers; indexes of words that should be red
+    this.textWords = this.dom.textInput.value.split(' '); // array of integers; indexes of words that should be red
 
-    this.headingColoredWords = this.dom.coloredWordsInput.value.length ? this.dom.coloredWordsInput.value.split(',') : [];
+    this.coloredWords = this.dom.coloredWordsInput.value.length ? this.dom.coloredWordsInput.value.split(',') : [];
   }
 
   bindEvents() {
-    this.dom.headingInput.addEventListener('input', this.onHeadingInputChange);
-    this.dom.coloredWords.addEventListener('click', this.onColoredWordsClick); // colored words checkbox
+    this.dom.textInput.addEventListener('input', this.onTextInputChange);
+    this.dom.coloredWords.addEventListener('click', this.onColoredWordsClick);
+    this.dom.bicolorInput.addEventListener('change', this.onBicolorInputChange);
   }
 
   renderColoredWords() {
     // create a span element for each word to create a clickable list of words
-    const wordSpans = this.headingWords.map((word, index) => {
+    const wordSpans = this.textWords.map((word, index) => {
       const span = document.createElement('span');
       span.innerText = word;
       span.dataset.index = index;
 
-      if (this.headingColoredWords.indexOf(`${index}`) !== -1) {
-        span.classList.add('highlight');
+      if (this.coloredWords.indexOf(`${index}`) !== -1) {
+        span.classList.add('red-highlight');
       }
 
       return span;
@@ -61,9 +64,9 @@ class MetaHomeBanner {
     this.dom.coloredWords.append(...wordSpans);
   }
 
-  onHeadingInputChange(e) {
+  onTextInputChange(e) {
     // set state of heading words
-    this.headingWords = e.currentTarget.value.trim().split(' '); // create a span element for each word to create a clickable list of words
+    this.textWords = e.currentTarget.value.trim().split(' '); // create a span element for each word to create a clickable list of words
 
     this.renderColoredWords();
   }
@@ -77,28 +80,35 @@ class MetaHomeBanner {
 
     const index = e.target.dataset.index; // add/remove current word's index to list of words to save
 
-    if (this.headingColoredWords.indexOf(index) === -1) {
-      this.headingColoredWords.push(`${index}`);
+    if (this.coloredWords.indexOf(index) === -1) {
+      this.coloredWords.push(`${index}`);
     } else {
-      this.headingColoredWords = this.headingColoredWords.filter(wordIndex => wordIndex !== `${index}`);
+      this.coloredWords = this.coloredWords.filter(wordIndex => wordIndex !== `${index}`);
     } // update value on hidden field
 
 
-    this.dom.coloredWordsInput.value = this.headingColoredWords.join(','); // render the word state change
+    this.dom.coloredWordsInput.value = this.coloredWords.join(','); // render the word state change
 
-    e.target.classList.toggle('highlight');
+    e.target.classList.toggle('red-highlight');
+  }
+
+  onBicolorInputChange(e) {
+    this.dom.coloredWordsWrap.classList.toggle('hidden', !e.currentTarget.checked);
   }
 
 }
 
 window.audintAdmin = window.audintAdmin || {};
-const metaHomeBanner = document.body.querySelector('#audint-meta-home-banner');
+const bicolorTextFields = document.body.querySelectorAll('.js-bicolor-text');
 
-if (metaHomeBanner) {
-  window.audintAdmin.metaHomeBanner = new MetaHomeBanner(metaHomeBanner);
+if (bicolorTextFields.length) {
+  window.audintAdmin.bicolorTextFields = [];
+  bicolorTextFields.forEach(group => {
+    window.audintAdmin.bicolorTextFields.push(new BicolorTextSettings(group));
+  });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (MetaHomeBanner);
+/* harmony default export */ __webpack_exports__["default"] = (BicolorTextSettings);
 
 /***/ }),
 
@@ -160,7 +170,7 @@ var __webpack_exports__ = {};
   !*** ./assets/admin/js/index.js ***!
   \**********************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _meta_home_meta_home_banner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./meta-home/meta-home-banner */ "./assets/admin/js/meta-home/meta-home-banner.js");
+/* harmony import */ var _meta_global_meta_bicolor_text__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./meta-global/meta-bicolor-text */ "./assets/admin/js/meta-global/meta-bicolor-text.js");
 /* harmony import */ var _css_admin_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/admin.scss */ "./assets/admin/css/admin.scss");
 
 

@@ -20,3 +20,5 @@ function audint_home_meta_boxes() {
 }
 add_action( 'add_meta_boxes', 'audint_home_meta_boxes' );
 
+
+// validate, sanitize, save

@@ -4,8 +4,14 @@
     margin-right: 6px;
     cursor: pointer;
 
-    &.highlight {
+    &.red-highlight {
       color: red;
     }
+  }
+}
+
+#audint_home_banner_heading_words_wrap {
+  &.hidden {
+    display: none;
   }
 }

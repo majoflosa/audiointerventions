@@ -20,7 +20,7 @@ function audint_home_banner_cb( $post ) {
     <p class="description">Settings for main banner shown on home page.</p>
     <hr>
 
-    <div class="meta-row audint-meta-row" id="audint-meta-home-banner">
+    <div class="meta-row audint-meta-row js-bicolor-text" id="audint-meta-home-banner">
       <div class="meta-td audint-meta-td">
 
         <div class="audint-meta-field-group inline">
@@ -28,7 +28,7 @@ function audint_home_banner_cb( $post ) {
             <span>Heading</span>
           </label>
           <div class="audint-meta-field-group__right grow">
-            <input type="text" name="audint_home_banner_heading" id="audint_home_banner_heading" autocomplete="off" value="This is an initial value" />
+            <input type="text" name="audint_home_banner_heading" id="audint_home_banner_heading" class="js-bicolor-text__text-input" autocomplete="off" value="Your Personalized Car Audio Awaits" />
           </div>
         </div>
 
@@ -37,17 +37,17 @@ function audint_home_banner_cb( $post ) {
             <span>Use red-colored words on heading?</span>
           </label>
           <div class="audint-meta-field-group__right">
-            <input type="checkbox" name="audint_home_banner_heading_bicolor" id="audint_home_banner_heading_bicolor" />
+            <input type="checkbox" name="audint_home_banner_heading_bicolor" id="audint_home_banner_heading_bicolor" class="js-bicolor-text__checkbox-input" checked />
           </div>
         </div>
 
-        <div class="audint-meta-field-group inline">
+        <div class="audint-meta-field-group inline js-bicolor-text__words-wrap" id="audint_home_banner_heading_words_wrap">
           <label for="audint_home_banner_heading_colored_words" class="audint-meta-field-group__left">
             <span>Click on the words you want to display in red.</span>
           </label>
           <div class="audint-meta-field-group__right grow">
-            <div id="audint_home_banner_heading_words" class="audint-home-banner-heading-words"></div>
-            <input type="hidden" name="audint_home_banner_heading_colored_words" id="audint_home_banner_heading_colored_words" value="3" />
+            <div id="audint_home_banner_heading_words" class="audint-home-banner-heading-words js-bicolor-text__words"></div>
+            <input type="hidden" name="audint_home_banner_heading_colored_words" id="audint_home_banner_heading_colored_words" class="js-bicolor-text__words-input" value="1" />
           </div>
         </div>
 

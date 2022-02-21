@@ -1,4 +1,4 @@
-import './meta-home/meta-home-banner';
+import './meta-global/meta-bicolor-text';
 
 import '../css/admin.scss';
 
