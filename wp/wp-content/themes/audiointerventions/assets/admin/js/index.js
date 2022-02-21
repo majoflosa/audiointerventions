@@ -1,4 +1,5 @@
 import './meta-global/meta-bicolor-text';
+import './meta-global/meta-media-library';
 
 import '../css/admin.scss';
 

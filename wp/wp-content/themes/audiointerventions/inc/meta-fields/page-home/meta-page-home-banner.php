@@ -58,12 +58,15 @@ function audint_home_banner_cb( $post ) {
           </div>
         </div>
 
-        <div class="audint-meta-field-group inline">
+        <div class="audint-meta-field-group inline js-media-library-fields">
           <label for="audint_home_banner_background_image" class="audint-meta-field-group__left">Choose image to display on the banner</label>
           <div class="audint-meta-field-group__right grow">
-            <button id="audint_home_banner_image_button" class="is-primary">Choose Image</button>
-            <div id="audint_home_banner_image_preview" class="audint-meta-home-banner-preview"></div>
-            <input type="hidden" name="audint_home_banner_background_image" id="audint_home_banner_background_image">
+            <button id="audint_home_banner_image_button" class="is-primary js-media-library-fields__button">Choose Image</button>
+            <div id="audint_home_banner_image_preview" class="audint-meta-home-banner-preview js-media-library-fields__preview-wrap">
+              <img class="js-media-library-fields__preview-img">
+              <button class="js-media-library-fields__remove">Remove</button>
+            </div>
+            <input type="text" name="audint_home_banner_background_image" id="audint_home_banner_background_image" class="js-media-library-fields__input">
           </div>
         </div>
 
