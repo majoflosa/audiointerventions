@@ -2,43 +2,49 @@ class BicolorTextSettings {
   constructor(el) {
     this.dom = { el };
 
+    // bind context of event handlers
     this.onTextInputChange = this.onTextInputChange.bind(this);
     this.onColoredWordsClick = this.onColoredWordsClick.bind(this);
     this.onBicolorInputChange = this.onBicolorInputChange.bind(this);
 
+    // run initial setup functions
     this.setDomElements();
     this.setProperties();
     this.bindEvents();
 
+    // render initial colored words
     this.renderColoredWords();
+    // hide words list, if not using colored words
     this.dom.coloredWordsWrap.classList.toggle('hidden', !this.dom.bicolorInput.checked);
   }
 
+  // bind elements to event handlers
   setDomElements() {
-    this.dom.textInput = document.body.querySelector('.js-bicolor-text__text-input');
-    this.dom.bicolorInput = document.body.querySelector('.js-bicolor-text__checkbox-input');
-    this.dom.coloredWordsInput = document.body.querySelector('.js-bicolor-text__words-input');
-    this.dom.coloredWords = document.body.querySelector('.js-bicolor-text__words');
-    this.dom.coloredWordsWrap = document.body.querySelector('.js-bicolor-text__words-wrap');
-    // this.dom.imageButton = document.body.querySelector('#audint_home_banner_image_button');
-    // this.dom.imagePreview = document.body.querySelector('#audint_home_banner_image_preview');
+    this.dom.textInput = this.dom.el.querySelector('.js-bicolor-text__text-input');
+    this.dom.bicolorInput = this.dom.el.querySelector('.js-bicolor-text__checkbox-input');
+    this.dom.coloredWordsInput = this.dom.el.querySelector('.js-bicolor-text__words-input');
+    this.dom.coloredWords = this.dom.el.querySelector('.js-bicolor-text__words');
+    this.dom.coloredWordsWrap = this.dom.el.querySelector('.js-bicolor-text__words-wrap');
   }
 
+  // initial "state" and other data about this instance
   setProperties() {
     // array of strings; each word in the heading text
     this.textWords = this.dom.textInput.value.split(' ');
-    // array of integers; indexes of words that should be red
+    // array of integers; indexes of words that should be red; initial value is comma-separated string of integers
     this.coloredWords = this.dom.coloredWordsInput.value.length 
       ? this.dom.coloredWordsInput.value.split(',')
       : [];
   }
 
+  // bind elements to event handlers
   bindEvents() {
     this.dom.textInput.addEventListener('input', this.onTextInputChange);
     this.dom.coloredWords.addEventListener('click', this.onColoredWordsClick);
     this.dom.bicolorInput.addEventListener('change', this.onBicolorInputChange);
   }
 
+  // renders the colored words
   renderColoredWords() {
     // create a span element for each word to create a clickable list of words
     const wordSpans = this.textWords.map((word, index) => {
@@ -58,6 +64,7 @@ class BicolorTextSettings {
     this.dom.coloredWords.append(...wordSpans);
   }
 
+  // updates list of words and re-renders clickable list
   onTextInputChange(e) {
     // set state of heading words
     this.textWords = e.currentTarget.value.trim().split(' ');
@@ -66,8 +73,9 @@ class BicolorTextSettings {
     this.renderColoredWords();
   }
 
+  // toggles the clicked word as colored, updates hidden field, and renders the updated list
   onColoredWordsClick(e) {
-    // exit if clicked element isn't a clicked word
+    // exit if clicked element isn't a clickable word
     if (e.target.tagName.toLowerCase() !== 'span') {
       return;
     }
@@ -87,13 +95,15 @@ class BicolorTextSettings {
     e.target.classList.toggle('red-highlight');
   }
 
+  // toggle visibility of list of input when checkbox is checked/unchecked
   onBicolorInputChange(e) {
     this.dom.coloredWordsWrap.classList.toggle('hidden', !e.currentTarget.checked);
   }
 }
 
+// global object storing instances of admin modules for this theme
 window.audintAdmin = window.audintAdmin || {};
-
+// instantiate module
 const bicolorTextFields = document.body.querySelectorAll('.js-bicolor-text');
 if (bicolorTextFields.length) {
   window.audintAdmin.bicolorTextFields = []

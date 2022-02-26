@@ -91,7 +91,7 @@ function audint_home_banner_cb( $post ) {
           </label>
           <div class="audint-meta-field-group__right grow js-character-count">
             <textarea name="audint_home_banner_text" id="audint_home_banner_text" rows="5" class="js-character-count__field"><?php echo $banner_text_value; ?></textarea>
-            <small>Character count: <span class="js-character-count__label">0</span>. Recommended: 125 - 150.</small>
+            <small>Character count: <strong class="js-character-count__label">0</strong>. Recommended: 125 - 150.</small>
           </div>
         </div>
 
