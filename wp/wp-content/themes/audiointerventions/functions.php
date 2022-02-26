@@ -58,3 +58,11 @@ function audint_admin_is_page_template( $template, $id ) {
 
     return $full_template === get_post_meta( $id, '_wp_page_template', true );
 }
+
+function audint_is_valid_nonce( $action, $name ) {
+    if ( isset( $_POST[$name] ) && wp_verify_nonce( $_POST[$name], $action ) ) {
+        return true;
+    }
+
+    return false;
+}

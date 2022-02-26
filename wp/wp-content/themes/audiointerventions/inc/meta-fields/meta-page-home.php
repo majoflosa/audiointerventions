@@ -3,8 +3,8 @@
  * Meta boxes / Custom Fields for Home page template
  */
 $audint_meta_boxes['home'] = [];
-require_once 'page-home/meta-page-home-banner.php';
 
+require_once 'page-home/meta-page-home-banner.php';
 
 function audint_home_meta_boxes() {
   global $post;
