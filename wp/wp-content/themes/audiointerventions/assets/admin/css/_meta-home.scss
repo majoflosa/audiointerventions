@@ -23,6 +23,7 @@
 
 #audint_home_banner_image_preview {
   margin-bottom: 10px;
+  position: relative;
   
   &.hidden {
     display: none;
@@ -30,5 +31,20 @@
 
   img {
     display: block;
+    max-width: 300px;
+  }
+
+  .audint-meta-home-banner-remove-img {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 300px;
+    transform: translate(-100%, 0);
+    background-color: red;
+    padding: 8px 14px;
+    border: none;
+    border-radius: none;
+    color: white;
+    cursor: pointer;
   }
 }

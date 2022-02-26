@@ -91,7 +91,7 @@ function audint_home_banner_cb( $post ) {
           </label>
           <div class="audint-meta-field-group__right grow js-character-count">
             <textarea name="audint_home_banner_text" id="audint_home_banner_text" rows="5" class="js-character-count__field"><?php echo $banner_text_value; ?></textarea>
-            <small>Character count: <strong class="js-character-count__label">0</strong>. Recommended: 125 - 150.</small>
+            <small>Character count: <strong class="js-character-count__label"><?php echo count($banner_text_value); ?></strong> | (Recommended: 125 - 150)</small>
           </div>
         </div>
 
@@ -115,7 +115,7 @@ function audint_home_banner_cb( $post ) {
                 <img src="<?php echo $banner_image_value; ?>" class="js-media-library-fields__preview-img">
               <?php endif; ?>
               <img class="js-media-library-fields__preview-img">
-              <button class="js-media-library-fields__remove">Remove</button>
+              <button class="audint-meta-home-banner-remove-img js-media-library-fields__remove">Remove</button>
             </div>
             <input type="text" name="audint_home_banner_background_image" id="audint_home_banner_background_image" class="js-media-library-fields__input" value="<?php echo $banner_image_value; ?>">
           </div>

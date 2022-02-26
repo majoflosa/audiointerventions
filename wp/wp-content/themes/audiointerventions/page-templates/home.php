@@ -9,12 +9,40 @@ get_header();
 <!-- = = = = = = = = = = = = = = = = = = = = =
   BEGIN HERO BANNER
 = = = = = = = = = = = = = = = = = = = = = = -->
+<?php
+  $hero_image = audint_get_meta_or_default( get_the_ID(), 'audint_home_banner_background_image', 'home_banner', 'image' );
+  $hero_heading = audint_get_meta_or_default( get_the_ID(), 'audint_home_banner_heading', 'home_banner', 'heading' );
+  $hero_is_bicolor = audint_get_meta_or_default( get_the_ID(), 'audint_home_banner_heading_bicolor', 'home_banner', 'bicolor' );
+  $hero_colored_words = audint_get_meta_or_default( get_the_ID(), 'audint_home_banner_colored_words', 'home_banner', 'colored_words' );
+  $hero_text = audint_get_meta_or_default( get_the_ID(), 'audint_home_banner_text', 'home_banner', 'text' );
+  $hero_display_hours = audint_get_meta_or_default( get_the_ID(), 'audint_home_banner_display_hours', 'home_banner', 'display_hours' );
+?>
 <div class="hero">
-  <div class="hero__img" style="background-image: url('./img/42-banner.jpg');"></div>
+  <div class="hero__img" style="background-image: url('<?php echo $hero_image; ?>');"></div>
   <div class="hero__inner constraint-lg">
     <div class="hero__content">
-      <h1 class="hero__title">Your <span class="color-primary">Personalized</span> Car Audio Awaits</h1>
-      <p class="hero__tagline">Have a car audio system built to your specifications using top grade components. Unlike chain audio dealers, we'll give you exactly what you want.</p>
+      <h1 class="hero__title">
+        <?php if ( $hero_is_bicolor ) :
+          $words = explode( ' ', $hero_heading );
+          $hero_colored_words_arr = explode( ',', $hero_colored_words );
+          $words_index = 0;
+          foreach ($words as $word) :
+            if ( in_array( $words_index, $hero_colored_words_arr, false ) ) :
+          ?>
+            <span class="color-primary"><?php echo $word . ' '; ?></span>
+          <?php else :
+            echo $word . ' ';
+          ?>
+          <?php
+            endif;
+            $words_index++;
+          endforeach;
+        ?>
+        <?php else : ?>
+          <?php echo $hero_heading; ?>
+        <?php endif; ?>
+      </h1>
+      <p class="hero__tagline"><?php echo $hero_text; ?></p>
     </div>
   </div>
   <div class="grid-flag" style="background-image: url('./img/grid-flag.svg');"></div>
@@ -23,6 +51,7 @@ get_header();
 <!-- = = = = = = = = = = = = = = = = = = = = =
   BEGIN HOURS BANNER
 = = = = = = = = = = = = = = = = = = = = = = -->
+<?php if ( $hero_display_hours ) : ?>
 <div class="hours-banner">
   <div class="hours-banner__left">
     <strong class="hours-banner__label">Our Hours</strong>
@@ -44,7 +73,7 @@ get_header();
     <strong>239-495-0586</strong>
   </div>
 </div>
-
+<?php endif; ?>
 
 <!-- = = = = = = = = = = = = = = = = = = = = =
   BEGIN CALLOUT SECTIONS

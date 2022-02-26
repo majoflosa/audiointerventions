@@ -45,3 +45,14 @@ function audint_get_option_or_default( $group_name, $option_name ) {
 
   return $option_value;
 }
+
+
+function audint_get_meta_or_default( $post_id, $meta_property, $group_name, $option_name ) {
+  $current_meta = get_post_meta( $post_id, $meta_property, true );
+  
+  if ( $current_meta === '' ) {
+    return audint_get_default( $group_name, $option_name );
+  }
+
+  return $current_meta;
+}
