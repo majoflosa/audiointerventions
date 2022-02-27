@@ -10,12 +10,6 @@
   }
 }
 
-#audint_home_banner_heading_words_wrap {
-  &.hidden {
-    display: none;
-  }
-}
-
 #audint_home_banner_image_button {
   display: block;
   margin-bottom: 10px;
@@ -47,4 +41,9 @@
     color: white;
     cursor: pointer;
   }
+}
+
+.audint-meta-callout-group {
+  background-color: #f9f9f9;
+  padding: 15px;
 }

@@ -70,7 +70,7 @@ function audint_home_banner_cb( $post ) {
             ? audint_get_default( 'home_banner', 'colored_words' )
             : $colored_words_value;
         ?>
-        <div class="audint-meta-field-group inline js-bicolor-text__words-wrap" id="audint_home_banner_heading_words_wrap">
+        <div class="audint-meta-field-group inline js-bicolor-text__words-wrap audint-meta-colored-words-wrap" id="audint_home_banner_heading_words_wrap">
           <label for="audint_home_banner_colored_words" class="audint-meta-field-group__left">
             <span>Click on the words you want to display in red.</span>
           </label>
@@ -108,14 +108,13 @@ function audint_home_banner_cb( $post ) {
           </label>
           <div class="audint-meta-field-group__right grow">
             <button id="audint_home_banner_image_button" class="is-primary js-media-library-fields__button">Choose Image</button>
-            <div id="audint_home_banner_image_preview" class="audint-meta-home-banner-preview js-media-library-fields__preview-wrap">
+            <div id="audint_home_banner_image_preview" class="audint-meta-image-preview js-media-library-fields__preview-wrap">
               <?php if ( $banner_image_value === audint_get_default( 'home_banner', 'image' ) ) : ?>
                 <img class="js-media-library-fields__preview-img">
               <?php else : ?>
                 <img src="<?php echo $banner_image_value; ?>" class="js-media-library-fields__preview-img">
               <?php endif; ?>
-              <img class="js-media-library-fields__preview-img">
-              <button class="audint-meta-home-banner-remove-img js-media-library-fields__remove">X Remove</button>
+              <button class="audint-meta-image-remove js-media-library-fields__remove">X Remove</button>
             </div>
             <input type="text" name="audint_home_banner_background_image" id="audint_home_banner_background_image" class="js-media-library-fields__input" value="<?php echo $banner_image_value; ?>">
           </div>

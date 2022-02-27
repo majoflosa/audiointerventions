@@ -5,13 +5,6 @@
     display: block;
   }
 
-  input[type="text"],
-  input[type="email"],
-  input[type="number"] {
-    display: block;
-    min-width: 300px;
-  }
-
   &.inline {
     display: flex;
     align-items: center;
@@ -31,6 +24,7 @@
       input[type="text"],
       input[type="email"],
       input[type="number"],
+      input[type="url"],
       textarea {
         display: block;
         width: 100%;
@@ -49,4 +43,57 @@
     display: inline-block;
     margin-right: 8px;
   }
+}
+
+.audint-meta-colored-words-wrap {
+  &.hidden {
+    display: none;
+  }
+}
+
+.audint-meta-image-preview {
+  margin-bottom: 10px;
+  position: relative;
+  
+  &.hidden {
+    display: none;
+  }
+
+  img {
+    display: block;
+    max-width: 300px;
+  }
+
+  .audint-meta-image-remove {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 300px;
+    transform: translate(-100%, 0);
+    background-color: red;
+    padding: 8px 14px;
+    border: none;
+    border-radius: none;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.postbox-header {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.postbox-header > h2 {
+  font-size: 1.5rem !important;
+  display: block !important;
+
+  &:after {
+    content: " - Audio Interventions Custom Fields";
+  }
+}
+
+.postbox .outer {
+  background-color: #f0f0f0;
+  padding: 20px;
 }
