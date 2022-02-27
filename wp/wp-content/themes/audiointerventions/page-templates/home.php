@@ -26,18 +26,15 @@ get_header();
           $words = explode( ' ', $hero_heading );
           $hero_colored_words_arr = explode( ',', $hero_colored_words );
           $words_index = 0;
-          foreach ($words as $word) :
-            if ( in_array( $words_index, $hero_colored_words_arr, false ) ) :
-          ?>
-            <span class="color-primary"><?php echo $word . ' '; ?></span>
-          <?php else :
-            echo $word . ' ';
-          ?>
-          <?php
-            endif;
-            $words_index++;
-          endforeach;
         ?>
+          <?php foreach ($words as $word) : ?>
+            <?php if ( in_array( $words_index, $hero_colored_words_arr, false ) ) : ?>
+              <span class="color-primary"><?php echo $word . ' '; ?></span>
+            <?php else : ?>
+              <?php echo $word . ' '; ?>
+            <?php endif;
+            $words_index++;
+          endforeach; ?>
         <?php else : ?>
           <?php echo $hero_heading; ?>
         <?php endif; ?>

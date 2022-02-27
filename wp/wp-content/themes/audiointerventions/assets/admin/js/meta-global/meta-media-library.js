@@ -14,6 +14,7 @@ class MetaMediaLibrary {
     this.onClickButton = this.onClickButton.bind(this);
     this.onClickRemove = this.onClickRemove.bind(this);
     this.onSelectMediaItem = this.onSelectMediaItem.bind(this);
+    this.onInputBlur = this.onInputBlur.bind(this);
 
     // run initial setup functions
     this.setDomElements();
@@ -41,6 +42,7 @@ class MetaMediaLibrary {
   bindEvents() {
     this.dom.button.addEventListener('click', this.onClickButton);
     this.dom.remove.addEventListener('click', this.onClickRemove);
+    this.dom.input.addEventListener('blur', this.onInputBlur);
     // custom wp.media event when main select button is clicked
     this.wpMedia.on('select', this.onSelectMediaItem);
   }
@@ -65,6 +67,15 @@ class MetaMediaLibrary {
     this.dom.previewImg.src = selectedImg[0].sizes.thumbnail.url;
     this.dom.previewWrap.classList.remove('hidden');
     this.dom.input.value = selectedImg[0].sizes.full.url;
+  }
+
+  onInputBlur() {
+    const newValue = this.dom.input.value;
+
+    if (newValue && this.dom.previewImg.src !== newValue) {
+      this.dom.previewImg.src = newValue;
+      this.dom.previewWrap.classList.remove('hidden');
+    }
   }
 }
 

@@ -115,7 +115,7 @@ function audint_home_banner_cb( $post ) {
                 <img src="<?php echo $banner_image_value; ?>" class="js-media-library-fields__preview-img">
               <?php endif; ?>
               <img class="js-media-library-fields__preview-img">
-              <button class="audint-meta-home-banner-remove-img js-media-library-fields__remove">Remove</button>
+              <button class="audint-meta-home-banner-remove-img js-media-library-fields__remove">X Remove</button>
             </div>
             <input type="text" name="audint_home_banner_background_image" id="audint_home_banner_background_image" class="js-media-library-fields__input" value="<?php echo $banner_image_value; ?>">
           </div>
