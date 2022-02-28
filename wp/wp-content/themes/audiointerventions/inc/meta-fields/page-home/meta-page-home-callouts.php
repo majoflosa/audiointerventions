@@ -51,7 +51,7 @@ function audint_home_callouts_cb( $post ) {
     <p class="description">Settings for Home page callouts</p>
     <hr>
 
-    <div class="meta-row audint-meta-row js-bicolor-text" id="audint-meta-home-callouts">
+    <div class="meta-row audint-meta-row" id="audint-meta-home-callouts">
       <div class="meta-td audint-meta-td">
 
         <?php
@@ -74,65 +74,55 @@ function audint_home_callouts_cb( $post ) {
           <?php
             // callout 1 title
             $callout_1_title_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_title', 'home_callouts', 'callout_1_title' );
-          ?>
-          <div class="audint-meta-field-group inline">
-            <label for="audint_home_callout_1_title" class="audint-meta-field-group__left">
-              <strong>Callout 1 Title</strong> <span>(If blank, defaults to <em>"<?php echo audint_get_default( 'home_callouts', 'callout_1_title'); ?>"</em>.)</span>
-            </label>
-            <div class="audint-meta-field-group__right grow">
-              <input type="text" name="audint_home_callout_1_title" id="audint_home_callout_1_title" autocomplete="off" class="js-bicolor-text__text-input" value="<?php echo $callout_1_title_value; ?>">
-            </div>
-          </div>
-
-          <?php
-            // callout 1 bicolor
             $is_callout_1_bicolor = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_bicolor', 'home_callouts', 'callout_1_bicolor' );
             $is_callout_1_bicolor_checked = $is_callout_1_bicolor ? 'checked' : '';
-          ?>
-          <div class="audint-meta-field-group inline">
-            <label for="audint_home_callout_1_bicolor" class="audint-meta-field-group__left">
-              <span>Use red-colored words on title?</span>
-            </label>
-            <div class="audint-meta-field-group__right">
-              <input type="checkbox" name="audint_home_callout_1_bicolor[]" id="audint_home_callout_1_bicolor" class="js-bicolor-text__checkbox-input" value="1" <?php echo $is_callout_1_bicolor_checked; ?> />
-            </div>
-          </div>
-
-          <?php
-            // callout 1 colored words
             $callout_1_colored_words_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_colored_words', 'home_callouts', 'callout_1_colored_words' );
+            $callout_1_heading_args = [
+              'text' => [
+                'label' => 'Callout 1 Title',
+                'default_value' => audint_get_default( 'home_callouts', 'callout_1_title' ),
+                'value' => $callout_1_title_value,
+                'name'  => 'audint_home_callout_1_title',
+                'id'  => 'audint_home_callout_1_title',
+              ],
+              'bicolor' => [
+                'label' => '',
+                'description' => 'Use red-colored words on title?',
+                'name'  => 'audint_home_callout_1_bicolor',
+                'id'  => 'audint_home_callout_1_bicolor',
+                'is_checked'  => $is_callout_1_bicolor_checked,
+              ],
+              'words' =>  [
+                'label' => '',
+                'description' => 'Click on the words you want displayed in red.',
+                'name'  => 'audint_home_callout_1_colored_words',
+                'id'  => 'audint_home_callout_1_colored_words',
+                'value' => $callout_1_colored_words_value,
+              ],
+            ];
+            audint_meta_bicolor_text( $callout_1_heading_args );
           ?>
-          <div class="audint-meta-field-group inline audint-meta-colored-words-wrap js-bicolor-text__words-wrap">
-            <label for="audint_home_callout_1_colored_words" class="audint-meta-field-group__left">
-              <span>Click on the words you want to display in red.</span>
-            </label>
-            <div class="audint-meta-field-group__right grow">
-              <div id="audint_home_callout_1_words" class="audint-home-banner-heading-words js-bicolor-text__words"></div>
-              <input type="hidden" name="audint_home_callout_1_colored_words" id="audint_home_callout_1_colored_words" class="js-bicolor-text__words-input" value="<?php echo $callout_1_colored_words_value; ?>" />
-            </div>
-          </div>
 
           <?php
             // callout 1 body text
             $callout_1_body_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_body', 'home_callouts', 'callout_1_body' );
+            $callout_1_wp_editor_settings = [
+              'media_buttons' => false,
+              'drag_drop_upload' => false,
+              'textarea_name' => 'audint_home_callout_1_body',
+              'textarea_rows' => 8,
+              'teeny' => true,
+            ];
+            $callout_1_body_args = [
+              'label' => 'Callout Text',
+              'description' => 'Main body of text displayed in the callout box',
+              'default_value' => trim( audint_get_default( 'home_callouts', 'callout_1_body' ) ),
+              'value' => $callout_1_body_value,
+              'id'  => 'audint_home_callout_1_body',
+              'wp_editor_settings'  => $callout_1_wp_editor_settings,
+            ];
+            audint_meta_wp_editor( $callout_1_body_args );
           ?>
-          <div class="audint-meta-field-group inline">
-            <label for="audint_home_callout_1_body" class="audint-meta-field-group__left">
-              <strong>Callout Text</strong>
-            </label>
-            <div class="audint-meta-field-group__right grow">
-              <?php
-                $wp_editor_settings = [
-                  'media_buttons' => false,
-                  'drag_drop_upload' => false,
-                  'textarea_name' => 'audint_home_callout_1_body',
-                  'textarea_rows' => 8,
-                  'teeny' => true,
-                ];
-                wp_editor( $callout_1_body_value, 'audint_home_callout_1_body', $wp_editor_settings );
-              ?>
-            </div>
-          </div>
 
           <?php
             // callout 1 link
@@ -163,21 +153,17 @@ function audint_home_callouts_cb( $post ) {
           
           <?php
             // callout 1 image
-            $callout_1_link_image_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_image', 'home_callouts', 'callout_1_image' );
+            $callout_1_image_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_image', 'home_callouts', 'callout_1_image' );
+            $callout_1_image_args = [
+              'label' => 'Image',
+              'description' => 'Image to display alongside the text content.',
+              'default_value' => audint_get_default( 'home_callouts', 'callout_1_image' ),
+              'name'  => 'audint_home_callout_1_image',
+              'id'    => 'audint_home_callout_1_image',
+              'value' => $callout_1_image_value,
+            ];
+            audint_meta_media_image( $callout_1_image_args );
           ?>
-          <div class="audint-meta-field-group inline js-media-library-fields">
-            <label for="audint_home_callout_1_image" class="audint-meta-field-group__left">
-              <strong>Image</strong>
-            </label>
-            <div class="audint-meta-field-group__right grow">
-              <button id="audint_home_callout_1_image_button" class="is-primary js-media-library-fields__button">Choose Image</button>
-              <div id="audint_home_callout_1_image_preview" class="audint-meta-image-preview js-media-library-fields__preview-wrap">
-                <img src="<?php echo $callout_1_link_image_value; ?>" class="js-media-library-fields__preview-img">
-                <button class="audint-meta-image-remove js-media-library-fields__remove">X Remove</button>
-              </div>
-              <input type="text" name="audint_home_callout_1_image" id="audint_home_callout_1_image" class="js-media-library-fields__input" value="<?php echo $callout_1_link_image_value; ?>">
-            </div>
-          </div>
 
           <?php 
             // callout 1 image position

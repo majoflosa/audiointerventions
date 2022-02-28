@@ -109,7 +109,7 @@ function audint_meta_bicolor_text( $args ) {
         <?php endif; ?>
       </label>
       <div class="audint-meta-field-group__right grow">
-        <input type="text" name="<?php echo $args['text']['name']; ?>" id="<?php echo $args['text']['id']; ?>" value="<?php echo esc_html( $args['text']['value'] ); ?>" class="js-bicolor-text__text-input">
+        <input type="text" name="<?php echo $args['text']['name']; ?>" id="<?php echo $args['text']['id']; ?>" value="<?php echo esc_html( $args['text']['value'] ); ?>" class="js-bicolor-text__text-input" autocomplete="off">
       </div>
     </div>
 
@@ -138,6 +138,62 @@ function audint_meta_bicolor_text( $args ) {
       </div>
     </div>
 
+  </div>
+
+  <?php
+}
+
+/**
+ * Outputs Image field with WP Media Uploader
+ * 
+ * $args: label, description, name, id, default_value, value
+ */
+function audint_meta_media_image( $args ) {
+  ?>
+
+  <div class="audint-meta-field-group inline js-media-library-fields">
+    <label for="<?php echo $args['name']; ?>" class="audint-meta-field-group__left">
+      <strong><?php echo $args['label']; ?></strong>
+      <?php if ( isset( $args['description'] ) ) : ?>
+        <span><?php echo $args['description']; ?></span>
+      <?php endif; ?>
+      <?php if ( isset( $args['default_value'] ) ) : ?>
+        <span>(If blank, defaults to <a href="<?php echo $args['default_value']; ?>" target="_blank">this image</a>.)</span>
+      <?php endif; ?>
+    </label>
+    <div class="audint-meta-field-group__right grow">
+      <div class="audint-meta-image-preview js-media-library-fields__preview-wrap">
+        <img src="<?php echo $args['value']; ?>" class="js-media-library-fields__preview-img">
+        <button class="audint-meta-image-remove js-media-library-fields__remove">X Remove</button>
+      </div>
+      <button class="audint-meta-image-button button button-primary js-media-library-fields__button">Choose Image</button>
+      <input type="text" name="<?php echo $args['name']; ?>" id="<?php echo $args['id']; ?>" class="js-media-library-fields__input" value="<?php echo $args['value']; ?>">
+    </div>
+  </div>
+
+  <?php
+}
+
+
+/**
+ * Outputs a rich text editor field
+ */
+function audint_meta_wp_editor( $args ) {
+  ?>
+
+  <div class="audint-meta-field-group inline">
+    <label for="audint_home_callout_1_body" class="audint-meta-field-group__left">
+      <strong><?php echo $args['label']; ?></strong>
+      <?php if ( isset( $args['description'] ) ) : ?>
+        <span><?php echo $args['description']; ?></span>
+      <?php endif; ?>
+      <?php if ( isset( $args['default_value'] ) ) : ?>
+        <span> (If blank, defaults to <em>"<?php echo $args['default_value']; ?>"</em>)</span>
+      <?php endif; ?>
+    </label>
+    <div class="audint-meta-field-group__right grow">
+      <?php wp_editor( $args['value'], $args['id'], $args['wp_editor_settings'] ); ?>
+    </div>
   </div>
 
   <?php

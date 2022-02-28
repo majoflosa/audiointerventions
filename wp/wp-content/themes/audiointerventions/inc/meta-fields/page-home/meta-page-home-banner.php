@@ -94,24 +94,16 @@ function audint_home_banner_cb( $post ) {
           $banner_image_value = '' === $banner_image_value
             ? audint_get_default( 'home_banner', 'image' )
             : $banner_image_value;
+          $banner_image_args = [
+            'label' => 'Banner image.',
+            'description' => 'Choose an image from your media library or insert a URL into the field.',
+            'name'  => 'audint_home_banner_background_image',
+            'id'  => 'audint_home_banner_background_image',
+            'value' => $banner_image_value,
+            'default_value' => audint_get_default( 'home_banner', 'image' ),
+          ];
+          audint_meta_media_image( $banner_image_args );
         ?>
-        <div class="audint-meta-field-group inline js-media-library-fields">
-          <label for="audint_home_banner_background_image" class="audint-meta-field-group__left">
-            <strong>Banner image.</strong> <span>(If blank, defaults to <a href="<?php echo audint_get_default( 'home_banner', 'image' ); ?>" target="_blank">this image</a>.)</span>
-          </label>
-          <div class="audint-meta-field-group__right grow">
-            <button id="audint_home_banner_image_button" class="is-primary js-media-library-fields__button">Choose Image</button>
-            <div id="audint_home_banner_image_preview" class="audint-meta-image-preview js-media-library-fields__preview-wrap">
-              <?php if ( $banner_image_value === audint_get_default( 'home_banner', 'image' ) ) : ?>
-                <img class="js-media-library-fields__preview-img">
-              <?php else : ?>
-                <img src="<?php echo $banner_image_value; ?>" class="js-media-library-fields__preview-img">
-              <?php endif; ?>
-              <button class="audint-meta-image-remove js-media-library-fields__remove">X Remove</button>
-            </div>
-            <input type="text" name="audint_home_banner_background_image" id="audint_home_banner_background_image" class="js-media-library-fields__input" value="<?php echo $banner_image_value; ?>">
-          </div>
-        </div>
 
         <?php
           // display hours?

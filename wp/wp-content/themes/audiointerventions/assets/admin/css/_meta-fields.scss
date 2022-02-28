@@ -68,8 +68,7 @@
     position: absolute;
     z-index: 1;
     top: 0;
-    left: 300px;
-    transform: translate(-100%, 0);
+    left: 0;
     background-color: red;
     padding: 8px 14px;
     border: none;
@@ -77,6 +76,11 @@
     color: white;
     cursor: pointer;
   }
+}
+
+.audint-meta-image-button {
+  margin-left: 1px !important;
+  margin-bottom: 5px !important;
 }
 
 .audint-meta-checkbox-wrap {
