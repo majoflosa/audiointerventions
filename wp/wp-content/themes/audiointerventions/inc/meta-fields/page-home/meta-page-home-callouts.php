@@ -4,7 +4,7 @@
  */
 $audint_meta_boxes['home']['callouts'] = [
   'id'            => 'audint_home_callouts',
-  'title'         => 'Callouts Sections',
+  'title'         => 'Callout Sections',
   'callback'      => 'audint_home_callouts_cb',
   'screen'        => 'page',
   'context'       => 'normal',

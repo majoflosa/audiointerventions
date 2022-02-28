@@ -29,56 +29,48 @@ function audint_home_banner_cb( $post ) {
     <p class="description">Settings for main banner shown on home page.</p>
     <hr>
 
-    <div class="meta-row audint-meta-row js-bicolor-text" id="audint-meta-home-banner">
+    <div class="meta-row audint-meta-row" id="audint-meta-home-banner">
       <div class="meta-td audint-meta-td">
 
         <?php
           // Banner Heading
           $heading_value = get_post_meta( $post->ID, 'audint_home_banner_heading', true);
           $heading_value = '' === $heading_value ? audint_get_default( 'home_banner', 'heading' ) : $heading_value;
-        ?>
-        <div class="audint-meta-field-group inline">
-          <label for="audint_home_banner_heading" class="audint-meta-field-group__left">
-            <strong>Heading.</strong> <span>(If blank, defaults to <em>"<?php echo audint_get_default( 'home_banner', 'heading' ); ?>"</em>)</span>
-          </label>
-          <div class="audint-meta-field-group__right grow">
-            <input type="text" name="audint_home_banner_heading" id="audint_home_banner_heading" class="js-bicolor-text__text-input" autocomplete="off" value="<?php echo $heading_value; ?>" />
-          </div>
-        </div>
-
-        <?php
-          // is bicolor heading?
           $is_bicolor_heading = get_post_meta( $post->ID, 'audint_home_banner_heading_bicolor', true);
           $is_bicolor_heading = '' === $is_bicolor_heading
             ? audint_get_default( 'home_banner', 'bicolor' ) 
             : $is_bicolor_heading;
           $is_bicolor_checked = $is_bicolor_heading ? 'checked' : '';
-        ?>
-        <div class="audint-meta-field-group inline">
-          <label for="audint_home_banner_heading_bicolor" class="audint-meta-field-group__left">
-            <span>Use red-colored words on heading?</span>
-          </label>
-          <div class="audint-meta-field-group__right">
-            <input type="checkbox" name="audint_home_banner_heading_bicolor[]" id="audint_home_banner_heading_bicolor" class="js-bicolor-text__checkbox-input" value="1" <?php echo $is_bicolor_checked; ?> />
-          </div>
-        </div>
-
-        <?php
-          // colored words
           $colored_words_value = get_post_meta( $post->ID, 'audint_home_banner_colored_words', true );
           $colored_words_value = '' === $colored_words_value
             ? audint_get_default( 'home_banner', 'colored_words' )
             : $colored_words_value;
+          $colored_heading_args = [
+            'text'    => [
+              'label' => 'Heading.',
+              'default_value' => audint_get_default( 'home_banner', 'heading' ),
+              'name'  => 'audint_home_banner_heading',
+              'id'    => 'audint_home_banner_heading',
+              'value' => $heading_value
+            ],
+            'bicolor' => [
+              'label' => '',
+              'description' => 'Use red-colored words on heading?',
+              'name'  => 'audint_home_banner_heading_bicolor',
+              'id'    => 'audint_home_banner_heading_bicolor',
+              'is_checked'  => $is_bicolor_checked,
+            ],
+            'words'   => [
+              'label' => '',
+              'description' => 'Click on the words you want displayed in red.',
+              'name'  => 'audint_home_banner_colored_words',
+              'id'  => 'audint_home_banner_colored_words',
+              'value' => $colored_words_value,
+            ],
+          ];
+          audint_meta_bicolor_text( $colored_heading_args );
         ?>
-        <div class="audint-meta-field-group inline js-bicolor-text__words-wrap audint-meta-colored-words-wrap" id="audint_home_banner_heading_words_wrap">
-          <label for="audint_home_banner_colored_words" class="audint-meta-field-group__left">
-            <span>Click on the words you want to display in red.</span>
-          </label>
-          <div class="audint-meta-field-group__right grow">
-            <div id="audint_home_banner_heading_words" class="audint-home-banner-heading-words js-bicolor-text__words"></div>
-            <input type="hidden" name="audint_home_banner_colored_words" id="audint_home_banner_colored_words" class="js-bicolor-text__words-input" value="<?php echo $colored_words_value; ?>" />
-          </div>
-        </div>
+        
 
         <?php
           // banner text
@@ -135,13 +127,13 @@ function audint_home_banner_cb( $post ) {
             'options'     => [
               'Yes' => [
                 'name'  => 'audint_home_banner_display_hours[]',
-                'id'    => 'audint_home_banner_display_hours',
+                'id'    => 'audint_home_banner_display_hours_1',
                 'value' => 1,
                 'is_checked'  => !!$display_hours_value == 1,
               ],
               'No' => [
                 'name'  => 'audint_home_banner_display_hours[]',
-                'id'    => 'audint_home_banner_display_hours',
+                'id'    => 'audint_home_banner_display_hours_0',
                 'value' => 0,
                 'is_checked'  => !!$display_hours_value == 0,
               ]
@@ -201,7 +193,9 @@ function audint_home_banner_save_meta( $post_id ) {
   update_post_meta( $post_id, 'audint_home_banner_background_image', $sanitized_banner_image );
   
   // display hours
-  $display_hours = isset( $_POST['audint_home_banner_display_hours'] ) ? 1 : 0;
+  $display_hours = isset( $_POST['audint_home_banner_display_hours'] )
+    ? $_POST['audint_home_banner_display_hours'][0]
+    : audint_get_default( 'home_banner', 'display_hours' );
   update_post_meta( $post_id, 'audint_home_banner_display_hours', $display_hours );
 }
 add_action( 'save_post', 'audint_home_banner_save_meta' );

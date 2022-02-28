@@ -85,3 +85,60 @@ function audint_meta_checkboxes( $args ) {
 
 <?php
 }
+
+/**
+ * Outputs text, checkbox, and words list for bicolor text
+ * 
+ * $args: 
+ *    text[label, description, name, id, value, default_value]
+ *    bicolor[label, description, name, id, is_checked]
+ *    words[label, description, name, id, value]
+ */
+function audint_meta_bicolor_text( $args ) {
+  ?>
+
+  <div class="js-bicolor-text">
+    <div class="audint-meta-field-group inline">
+      <label for="<?php echo $args['text']['name']; ?>" class="audint-meta-field-group__left">
+        <strong><?php echo $args['text']['label']; ?></strong>
+        <?php if ( isset( $args['text']['description'] ) ) : ?>
+          <span> <?php echo $args['text']['description']; ?></span>
+        <?php endif; ?>
+        <?php if ( isset( $args['text']['default_value'] ) ) : ?>
+          <span> (If blank, defaults to <em>"<?php echo $args['text']['default_value']; ?>"</em>)</span>
+        <?php endif; ?>
+      </label>
+      <div class="audint-meta-field-group__right grow">
+        <input type="text" name="<?php echo $args['text']['name']; ?>" id="<?php echo $args['text']['id']; ?>" value="<?php echo esc_html( $args['text']['value'] ); ?>" class="js-bicolor-text__text-input">
+      </div>
+    </div>
+
+    <div class="audint-meta-field-group inline">
+      <label for="<?php echo $args['bicolor']['name']; ?>" class="audint-meta-field-group__left">
+        <strong><?php echo $args['bicolor']['label']; ?></strong>
+        <?php if ( isset( $args['bicolor']['description'] ) ) : ?>
+          <span> <?php echo $args['bicolor']['description']; ?></span>
+        <?php endif; ?>
+      </label>
+      <div class="audint-meta-field-group__right grow">
+        <input type="checkbox" name="<?php echo $args['bicolor']['name']; ?>" id="<?php echo $args['bicolor']['id']; ?>" value="1" <?php echo $args['bicolor']['is_checked']; ?> class="js-bicolor-text__checkbox-input">
+      </div>
+    </div>
+
+    <div class="audint-meta-field-group inline audint-meta-colored-words-wrap js-bicolor-text__words-wrap">
+      <label for="<?php echo $args['words']['name']; ?>" class="audint-meta-field-group__left">
+        <strong><?php echo $args['words']['label']; ?></strong>
+        <?php if ( isset( $args['words']['description'] ) ) : ?>
+          <span> <?php echo $args['words']['description']; ?></span>
+        <?php endif; ?>
+      </label>
+      <div class="audint-meta-field-group__right grow">
+        <div class="audint-home-banner-heading-words js-bicolor-text__words"></div>
+        <input type="hidden" name="<?php echo $args['words']['name']; ?>" id="<?php echo $args['words']['id']; ?>" class="js-bicolor-text__words-input" value="<?php echo $args['words']['value']; ?>" />
+      </div>
+    </div>
+
+  </div>
+
+  <?php
+}
