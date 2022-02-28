@@ -168,42 +168,50 @@ function audint_home_callouts_cb( $post ) {
           <?php 
             // callout 1 image position
             $callout_1_image_position_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_image_position', 'home_callouts', 'callout_1_image_position' );
+            $callout_1_image_position_args = [
+              'label' => 'Image Position',
+              'input_type'  => 'radio',
+              'options'     => [
+                'Left' => [
+                  'name'  => 'audint_home_callout_1_image_position[]',
+                  'id'    => 'audint_home_callout_1_image_position_1',
+                  'value' => 'left',
+                  'is_checked'  => $callout_1_image_position_value == 'left',
+                ],
+                'Right' => [
+                  'name'  => 'audint_home_callout_1_image_position[]',
+                  'id'    => 'audint_home_callout_1_image_position_2',
+                  'value' => 'right',
+                  'is_checked'  => $callout_1_image_position_value == 'right',
+                ]
+              ],
+            ];
+            audint_meta_checkboxes( $callout_1_image_position_args );
           ?>
-          <div class="audint-meta-field-group inline">
-            <label for="audint_home_callout_1_image_position" class="audint-meta-field-group__left">
-              <strong>Image position</strong>
-            </label>
-            <div class="audint-meta-field-group__right grow">
-              <div class="audint-meta-checkbox-wrap">
-                <input type="radio" name="audint_home_callout_1_image_position[]" id="audint_home_callout_1_image_position_1" value="left" <?php echo $callout_1_image_position_value === 'left' ? 'checked' : ''; ?>>
-                <span>Left</span>
-              </div>
-              <div class="audint-meta-checkbox-wrap">
-                <input type="radio" name="audint_home_callout_1_image_position[]" id="audint_home_callout_1_image_position_2" value="left" <?php echo $callout_1_image_position_value === 'right' ? 'checked' : ''; ?>>
-                <span>Right</span>
-              </div>
-            </div>
-          </div>
           
           <?php
             // callout 1 style
             $callout_1_style_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_style', 'home_callouts', 'callout_1_style' );
+            $callout_1_style_args = [
+              'label' => 'Color Style',
+              'input_type'  => 'radio',
+              'options'     => [
+                'Dark' => [
+                  'name'  => 'audint_home_callout_1_style[]',
+                  'id'    => 'audint_home_callout_1_style_1',
+                  'value' => 'dark',
+                  'is_checked'  => $callout_1_style_value == 'dark',
+                ],
+                'Light' => [
+                  'name'  => 'audint_home_callout_1_style[]',
+                  'id'    => 'audint_home_callout_1_style_2',
+                  'value' => 'light',
+                  'is_checked'  => $callout_1_style_value == 'light',
+                ]
+              ],
+            ];
+            audint_meta_checkboxes( $callout_1_style_args );
           ?>
-          <div class="audint-meta-field-group inline">
-            <label for="audint_home_callout_1_style" class="audint-meta-field-group__left">
-              <strong>Style</strong>
-            </label>
-            <div class="audint-meta-field-group__right grow">
-              <div class="audint-meta-checkbox-wrap">
-                <input type="radio" name="audint_home_callout_1_style[]" id="audint_home_callout_1_style_1" value="dark" <?php echo $callout_1_style_value === 'dark' ? 'checked' : ''; ?>>
-                <span>Dark</span>
-              </div>
-              <div class="audint-meta-checkbox-wrap">
-                <input type="radio" name="audint_home_callout_1_style[]" id="audint_home_callout_1_style_2" value="light" <?php echo $callout_1_style_value === 'light' ? 'checked' : ''; ?>>
-                <span>Light</span>
-              </div>
-            </div>
-          </div>
         </div><!-- callout 1 fields -->
 
       </div>
