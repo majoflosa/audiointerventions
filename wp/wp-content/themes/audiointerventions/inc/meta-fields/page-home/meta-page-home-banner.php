@@ -128,15 +128,27 @@ function audint_home_banner_cb( $post ) {
             ? audint_get_default( 'home_banner', 'image' )
             : $display_hours_value;
           $display_hours_checked = $display_hours_value ? 'checked' : '';
+          $display_hours_args = [
+            'label' => '',
+            'description' => 'Display hours section under banner?',
+            'input_type'  => 'radio',
+            'options'     => [
+              'Yes' => [
+                'name'  => 'audint_home_banner_display_hours[]',
+                'id'    => 'audint_home_banner_display_hours',
+                'value' => 1,
+                'is_checked'  => !!$display_hours_value == 1,
+              ],
+              'No' => [
+                'name'  => 'audint_home_banner_display_hours[]',
+                'id'    => 'audint_home_banner_display_hours',
+                'value' => 0,
+                'is_checked'  => !!$display_hours_value == 0,
+              ]
+            ],
+          ];
+          audint_meta_checkboxes( $display_hours_args );
         ?>
-        <div class="audint-meta-field-group inline">
-          <label for="audint_home_banner_display_hours" class="audint-meta-field-group__left">
-            <span>Display hours section under banner?</span>
-          </label>
-          <div class="audint-meta-field-group__right">
-            <input type="checkbox" name="audint_home_banner_display_hours" id="audint_home_banner_display_hours" value="1" <?php echo $display_hours_checked; ?> />
-          </div>
-        </div>
 
       </div>
     </div>

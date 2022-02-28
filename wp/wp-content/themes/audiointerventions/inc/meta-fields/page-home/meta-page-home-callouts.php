@@ -57,15 +57,16 @@ function audint_home_callouts_cb( $post ) {
         <?php
           // section heading
           $callouts_heading = audint_get_meta_or_default( $post->ID, 'audint_home_callouts_heading', 'home_callouts', 'heading' );
+          $callouts_heading_args = [
+            'label' => 'Main Callout Heading',
+            'description' => 'Heading text for section containing all 3 callouts.',
+            'name'  => 'audint_home_callouts_heading',
+            'id'    => 'audint_home_callouts_heading',
+            'value' => $callouts_heading,
+            'default_value' => audint_get_default( 'home_callouts', 'heading' ),
+          ];
+          audint_meta_text( $callouts_heading_args );
         ?>
-        <div class="audint-meta-field-group inline">
-          <label for="audint_home_callouts_heading" class="audint-meta-field-group__left">
-            <strong>Main Callouts Heading</strong> <span>Heading text for section containing all 3 callouts. (If blank, defaults to <em>"Why Audio Interventions"</em>)</span>
-          </label>
-          <div class="audint-meta-field-group__right grow">
-            <input type="text" name="audint_home_callouts_heading" id="audint_home_callouts_heading" autocomplete="off" value="<?php echo $callouts_heading; ?>">
-          </div>
-        </div>
 
         <div class="audint-meta-callout-group">
           <h3 class="audint-meta-callout-header">Callout 1</h3>
