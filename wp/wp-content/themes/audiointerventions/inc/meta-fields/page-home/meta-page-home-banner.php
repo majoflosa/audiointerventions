@@ -84,16 +84,17 @@ function audint_home_banner_cb( $post ) {
           // banner text
           $banner_text_value = get_post_meta( $post->ID, 'audint_home_banner_text', true );
           $banner_text_value = '' === $banner_text_value ? audint_get_default( 'home_banner', 'text' ) : $banner_text_value;
+          $banner_text_field_args = [
+            'label' => 'Text under heading.',
+            'name'  => 'audint_home_banner_text',
+            'id'    => 'audint_home_banner_text',
+            'value' => $banner_text_value,
+            'default_value' => audint_get_default( 'home_banner', 'text' ),
+            'rows'  => 5,
+            'recommended_length'  => '125 - 150'
+          ];
+          audint_meta_textarea( $banner_text_field_args );
         ?>
-        <div class="audint-meta-field-group inline">
-          <label for="audint_home_banner_text" class="audint-meta-field-group__left">
-            <strong>Text under heading.</strong> <span>(If blank, defaults to <em>"<?php echo audint_get_default( 'home_banner', 'text' ); ?>"</em>)</span>
-          </label>
-          <div class="audint-meta-field-group__right grow js-character-count">
-            <textarea name="audint_home_banner_text" id="audint_home_banner_text" rows="5" class="js-character-count__field"><?php echo $banner_text_value; ?></textarea>
-            <small>Character count: <strong class="js-character-count__label"><?php echo count($banner_text_value); ?></strong> | (Recommended: 125 - 150)</small>
-          </div>
-        </div>
 
         <?php
           // image

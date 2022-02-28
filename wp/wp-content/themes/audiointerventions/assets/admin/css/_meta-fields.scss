@@ -79,6 +79,15 @@
   }
 }
 
+.audint-meta-checkbox-wrap {
+  display: inline-block;
+  vertical-align: middle;
+
+  & + & {
+    margin-left: 10px;
+  }
+}
+
 .postbox-header {
   padding-top: 8px;
   padding-bottom: 8px;

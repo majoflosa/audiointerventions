@@ -120,7 +120,16 @@ function audint_home_callouts_cb( $post ) {
               <strong>Callout Text</strong>
             </label>
             <div class="audint-meta-field-group__right grow">
-              <textarea name="audint_home_callout_1_body" id="audint_home_callout_1_body" rows="5"><?php echo $callout_1_body_value; ?></textarea>
+              <?php
+                $wp_editor_settings = [
+                  'media_buttons' => false,
+                  'drag_drop_upload' => false,
+                  'textarea_name' => 'audint_home_callout_1_body',
+                  'textarea_rows' => 8,
+                  'teeny' => true,
+                ];
+                wp_editor( $callout_1_body_value, 'audint_home_callout_1_body', $wp_editor_settings );
+              ?>
             </div>
           </div>
 
@@ -133,6 +142,20 @@ function audint_home_callouts_cb( $post ) {
               <strong>Link</strong>
             </label>
             <div class="audint-meta-field-group__right grow">
+              <div class="audint-meta-link-group">
+                <div class="audint-meta-checkbox-wrap">
+                  <input type="radio" value="page" checked>
+                  <span>Page</span>
+                </div>
+                <div class="audint-meta-checkbox-wrap">
+                  <input type="radio" value="post">
+                  <span>Post</span>
+                </div>
+                <div class="audint-meta-checkbox-wrap">
+                  <input type="radio" value="other">
+                  <span>Custom</span>
+                </div>
+              </div>
               <input type="url" name="audint_home_callout_1_link" id="audint_home_callout_1_link" value="<?php echo $callout_1_link_value; ?>">
             </div>
           </div>
