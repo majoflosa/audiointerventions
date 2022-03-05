@@ -34,6 +34,7 @@ require_once 'inc/theme-settings/main-social.php';
 // meta boxes
 $audint_meta_boxes = [];
 require_once 'inc/meta-fields/meta-fields-functions.php';
+require_once 'inc/meta-fields/meta-components/meta-callout.php';
 require_once 'inc/meta-fields/page-home/meta-page-home.php';
 
 // taxonomy meta

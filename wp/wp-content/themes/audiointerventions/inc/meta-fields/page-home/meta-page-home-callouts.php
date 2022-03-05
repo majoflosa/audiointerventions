@@ -4,7 +4,7 @@
  */
 $audint_meta_boxes['home']['callouts'] = [
   'id'            => 'audint_home_callouts',
-  'title'         => 'Callout Sections',
+  'title'         => 'Callouts Section',
   'callback'      => 'audint_home_callouts_cb',
   'screen'        => 'page',
   'context'       => 'normal',
@@ -35,7 +35,7 @@ $audint_defaults['home_callouts'] = [
   'callout_2_link_new_tab'  => false,
   'callout_2_image'  => ASSETS_URL . 'img/jl-audio.jpg',
   'callout_2_image_position'  => 'left',
-  'callout_2_style'  => 'white',
+  'callout_2_style'  => 'light',
   // callout 3
   'callout_3_title' => 'Expert Facilities and Technicians',
   'callout_3_bicolor' => true,
@@ -45,7 +45,7 @@ $audint_defaults['home_callouts'] = [
   'callout_3_link_text'  => 'Learn More About Us',
   'callout_3_link_new_tab'  => false,
   'callout_3_image'  => ASSETS_URL . 'img/boat-audio.jpg',
-  'callout_3_image_position'  => 'left',
+  'callout_3_image_position'  => 'right',
   'callout_3_style'  => 'dark',
 ];
 
@@ -74,155 +74,155 @@ function audint_home_callouts_cb( $post ) {
           audint_meta_text( $callouts_heading_args );
         ?>
 
-        <div class="audint-meta-callout-group">
-          <h3 class="audint-meta-callout-header">Callout 1</h3>
-          
-          <?php
-            // callout 1 title
-            $callout_1_title_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_title', 'home_callouts', 'callout_1_title' );
-            $is_callout_1_bicolor = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_bicolor', 'home_callouts', 'callout_1_bicolor' );
-            $is_callout_1_bicolor_checked = $is_callout_1_bicolor ? 'checked' : '';
-            $callout_1_colored_words_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_colored_words', 'home_callouts', 'callout_1_colored_words' );
-            $callout_1_heading_args = [
-              'text' => [
-                'label' => 'Callout 1 Title',
-                'default_value' => audint_get_default( 'home_callouts', 'callout_1_title' ),
-                'value' => $callout_1_title_value,
-                'name'  => 'audint_home_callout_1_title',
-                'id'  => 'audint_home_callout_1_title',
-              ],
-              'bicolor' => [
-                'label' => '',
-                'description' => 'Use red-colored words on title?',
-                'name'  => 'audint_home_callout_1_bicolor',
-                'id'  => 'audint_home_callout_1_bicolor',
-                'is_checked'  => $is_callout_1_bicolor_checked,
-              ],
-              'words' =>  [
-                'label' => '',
-                'description' => 'Click on the words you want displayed in red.',
-                'name'  => 'audint_home_callout_1_colored_words',
-                'id'  => 'audint_home_callout_1_colored_words',
-                'value' => $callout_1_colored_words_value,
-              ],
-            ];
-            audint_meta_bicolor_text( $callout_1_heading_args );
+        <?php
+          $callout_keys = [ 'callout_1', 'callout_2', 'callout_3' ];
+          foreach ($callout_keys as $key) :
           ?>
-
+          <div class="audint-meta-callout-group">
+            <h3 class="audint-meta-callout-header">
+              <?php echo strtoupper( str_replace( '_', ' ', $key ) ); ?>
+            </h3>
           <?php
+            $callout_title_value = audint_get_meta_or_default( $post->ID, 'audint_home_' . $key . '_title', 'home_callouts', $key . '_title' );
+            $is_callout_bicolor = audint_get_meta_or_default( $post->ID, 'audint_home_' . $key . '_bicolor', 'home_callouts', $key . '_bicolor' );
+            $is_callout_bicolor_checked = $is_callout_bicolor ? 'checked' : '';
+            $callout_colored_words_value = audint_get_meta_or_default( $post->ID, 'audint_home_' . $key . '_colored_words', 'home_callouts', $key . '_colored_words' );
             // callout 1 body text
-            $callout_1_body_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_body', 'home_callouts', 'callout_1_body' );
-            $callout_1_wp_editor_settings = [
+            $callout_body_value = audint_get_meta_or_default( $post->ID, 'audint_home_' . $key . '_body', 'home_callouts', $key . '_body' );
+            $callout_wp_editor_settings = [
               'media_buttons' => false,
               'drag_drop_upload' => false,
-              'textarea_name' => 'audint_home_callout_1_body',
+              'textarea_name' => 'audint_home_' . $key . '_body',
               'textarea_rows' => 8,
               'teeny' => true,
             ];
-            $callout_1_body_args = [
-              'label' => 'Callout Text',
-              'description' => 'Main body of text displayed in the callout box',
-              'default_value' => trim( audint_get_default( 'home_callouts', 'callout_1_body' ) ),
-              'value' => $callout_1_body_value,
-              'id'  => 'audint_home_callout_1_body',
-              'wp_editor_settings'  => $callout_1_wp_editor_settings,
-            ];
-            audint_meta_wp_editor( $callout_1_body_args );
-          ?>
-
-          <?php
             // callout 1 link
-            $callout_1_link_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_link', 'home_callouts', 'callout_1_link' );
-            $callout_1_link_text_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_link_text', 'home_callouts', 'callout_1_link_text' );
-            $callout_1_link_new_tab_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_link_new_tab', 'home_callouts', 'callout_1_link_new_tab' );
-            $callout_1_link_args = [
-              'label' => 'Link.',
-              'description' => 'Settings for the link displayed under the callout text.',
-              'url' => [
-                'name'  => 'audint_home_callout_1_link',
-                'id'    => 'audint_home_callout_1_link',
-                'default_value' => audint_get_default( 'home_callouts', 'callout_1_link' ),
-                'value' => $callout_1_link_value,
-                'type'  => 'page',
-              ],
-              'text'  => [
-                'name'  => 'audint_home_callout_1_link_text',
-                'id'  => 'audint_home_callout_1_link_text',
-                'default_value'  => audint_get_default( 'home_callouts', 'callout_1_link_text' ),
-                'value' => $callout_1_link_text_value,
-              ],
-              'new_tab'  => [
-                'name'  => 'audint_home_callout_1_link_tab',
-                'id'  => 'audint_home_callout_1_link_tab',
-                'default_value' => audint_get_default( 'home_callouts', 'callout_1_link_new_tab' ),
-                'value' => $callout_1_link_new_tab_value,
-              ],
-            ];
-            audint_meta_link( $callout_1_link_args );
-          ?>
-          
-          <?php
+            $callout_link_value = audint_get_meta_or_default( $post->ID, 'audint_home_' . $key . '_link', 'home_callouts', $key . '_link' );
+            $callout_link_text_value = audint_get_meta_or_default( $post->ID, 'audint_home_' . $key . '_link_text', 'home_callouts', $key . '_link_text' );
+            $callout_link_new_tab_value = audint_get_meta_or_default( $post->ID, 'audint_home_' . $key . '_link_new_tab', 'home_callouts', $key . '_link_new_tab' );
             // callout 1 image
-            $callout_1_image_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_image', 'home_callouts', 'callout_1_image' );
-            $callout_1_image_args = [
-              'label' => 'Image',
-              'description' => 'Image to display alongside the text content.',
-              'default_value' => audint_get_default( 'home_callouts', 'callout_1_image' ),
-              'name'  => 'audint_home_callout_1_image',
-              'id'    => 'audint_home_callout_1_image',
-              'value' => $callout_1_image_value,
-            ];
-            audint_meta_media_image( $callout_1_image_args );
-          ?>
-
-          <?php 
+            $callout_image_value = audint_get_meta_or_default( $post->ID, 'audint_home_' . $key . '_image', 'home_callouts', $key . '_image' );
             // callout 1 image position
-            $callout_1_image_position_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_image_position', 'home_callouts', 'callout_1_image_position' );
-            $callout_1_image_position_args = [
-              'label' => 'Image Position',
-              'input_type'  => 'radio',
-              'options'     => [
-                'Left' => [
-                  'name'  => 'audint_home_callout_1_image_position[]',
-                  'id'    => 'audint_home_callout_1_image_position_1',
-                  'value' => 'left',
-                  'is_checked'  => $callout_1_image_position_value == 'left',
-                ],
-                'Right' => [
-                  'name'  => 'audint_home_callout_1_image_position[]',
-                  'id'    => 'audint_home_callout_1_image_position_2',
-                  'value' => 'right',
-                  'is_checked'  => $callout_1_image_position_value == 'right',
-                ]
-              ],
-            ];
-            audint_meta_checkboxes( $callout_1_image_position_args );
-          ?>
-          
-          <?php
+            $callout_image_position_value = audint_get_meta_or_default( $post->ID, 'audint_home_' . $key . '_image_position', 'home_callouts', $key . '_image_position' );
             // callout 1 style
-            $callout_1_style_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_style', 'home_callouts', 'callout_1_style' );
-            $callout_1_style_args = [
-              'label' => 'Color Style',
-              'input_type'  => 'radio',
-              'options'     => [
-                'Dark' => [
-                  'name'  => 'audint_home_callout_1_style[]',
-                  'id'    => 'audint_home_callout_1_style_1',
-                  'value' => 'dark',
-                  'is_checked'  => $callout_1_style_value == 'dark',
+            $callout_style_value = audint_get_meta_or_default( $post->ID, 'audint_home_' . $key . '_style', 'home_callouts', $key . '_style' );
+            $callout_args = [
+              // callout title
+              'bicolor_title' => [
+                'text' => [
+                  'label' => 'Callout Title.',
+                  'default_value' => audint_get_default( 'home_callouts', $key . '_title' ),
+                  'value' => $callout_title_value,
+                  'name'  => 'audint_home_' . $key . '_title',
+                  'id'  => 'audint_home_' . $key . '_title',
                 ],
-                'Light' => [
-                  'name'  => 'audint_home_callout_1_style[]',
-                  'id'    => 'audint_home_callout_1_style_2',
-                  'value' => 'light',
-                  'is_checked'  => $callout_1_style_value == 'light',
-                ]
+                'bicolor' => [
+                  'label' => '',
+                  'description' => 'Use red-colored words on title?',
+                  'name'  => 'audint_home_' . $key . '_bicolor',
+                  'id'  => 'audint_home_' . $key . '_bicolor',
+                  'is_checked'  => $is_callout_bicolor_checked,
+                ],
+                'words' =>  [
+                  'label' => '',
+                  'description' => 'Click on the words you want displayed in red.',
+                  'name'  => 'audint_home_' . $key . '_colored_words',
+                  'id'  => 'audint_home_' . $key . '_colored_words',
+                  'value' => $callout_colored_words_value,
+                ],
+              ],
+
+              // callout text
+              'body_text' => [
+                'label' => 'Callout Text.',
+                'description' => 'Main body of text displayed in the callout box',
+                'default_value' => trim( audint_get_default( 'home_callouts', $key . '_body' ) ),
+                'value' => $callout_body_value,
+                'id'  => 'audint_home_' . $key . '_body',
+                'wp_editor_settings'  => $callout_wp_editor_settings,
+              ],
+
+              // callout link
+              'link_fields' => [
+                'label' => 'Link.',
+                'description' => 'Settings for the link displayed under the callout text.',
+                'url' => [
+                  'name'  => 'audint_home_' . $key . '_link',
+                  'id'    => 'audint_home_' . $key . '_link',
+                  'default_value' => audint_get_default( 'home_callouts', $key . '_link' ),
+                  'value' => $callout_link_value,
+                  'type'  => 'page',
+                ],
+                'text'  => [
+                  'name'  => 'audint_home_' . $key . '_link_text',
+                  'id'  => 'audint_home_' . $key . '_link_text',
+                  'default_value'  => audint_get_default( 'home_callouts', $key . '_link_text' ),
+                  'value' => $callout_link_text_value,
+                ],
+                'new_tab'  => [
+                  'name'  => 'audint_home_' . $key . '_link_tab',
+                  'id'  => 'audint_home_' . $key . '_link_tab',
+                  'default_value' => audint_get_default( 'home_callouts', $key . '_link_new_tab' ),
+                  'value' => $callout_link_new_tab_value,
+                ],
+              ],
+
+              // callout image
+              'image' => [
+                'label' => 'Image.',
+                'description' => 'Image to display alongside the text content.',
+                'default_value' => audint_get_default( 'home_callouts', $key . '_image' ),
+                'name'  => 'audint_home_' . $key . '_image',
+                'id'    => 'audint_home_' . $key . '_image',
+                'value' => $callout_image_value,
+              ],
+
+              // callout layout
+              'layout'  => [
+                'label' => 'Image Position',
+                'input_type'  => 'radio',
+                'options'     => [
+                  'Left' => [
+                    'name'  => 'audint_home_' . $key . '_image_position[]',
+                    'id'    => 'audint_home_' . $key . '_image_position_1',
+                    'value' => 'left',
+                    'is_checked'  => $callout_image_position_value == 'left',
+                  ],
+                  'Right' => [
+                    'name'  => 'audint_home_' . $key . '_image_position[]',
+                    'id'    => 'audint_home_' . $key . '_image_position_2',
+                    'value' => 'right',
+                    'is_checked'  => $callout_image_position_value == 'right',
+                  ]
+                ],
+              ],
+
+              // callout style
+              'style' => [
+                'label' => 'Color Style',
+                'input_type'  => 'radio',
+                'options'     => [
+                  'Dark' => [
+                    'name'  => 'audint_home_' . $key . '_style[]',
+                    'id'    => 'audint_home_' . $key . '_style_1',
+                    'value' => 'dark',
+                    'is_checked'  => $callout_style_value == 'dark',
+                  ],
+                  'Light' => [
+                    'name'  => 'audint_home_' . $key . '_style[]',
+                    'id'    => 'audint_home_' . $key . '_style_2',
+                    'value' => 'light',
+                    'is_checked'  => $callout_style_value == 'light',
+                  ]
+                ],
               ],
             ];
-            audint_meta_checkboxes( $callout_1_style_args );
-          ?>
-        </div><!-- callout 1 fields -->
+            audint_meta_callout( $callout_args );
+            ?>
+            </div><!-- callout 1 fields -->
+            <?php
+          endforeach;
+        ?>
 
       </div>
     </div>

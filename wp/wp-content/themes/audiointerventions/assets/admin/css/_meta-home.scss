@@ -46,4 +46,8 @@
 .audint-meta-callout-group {
   background-color: #f9f9f9;
   padding: 15px;
+
+  & + & {
+    margin-top: 20px;
+  }
 }

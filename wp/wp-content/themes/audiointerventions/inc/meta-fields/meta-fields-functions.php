@@ -231,15 +231,15 @@ function audint_meta_link( $args ) {
   <div class="audint-meta-field-group__right audint-meta-link grow js-link-field">
     <div class="audint-meta-link__types js-link-field__types">
       <div class="audint-meta-checkbox-wrap">
-        <input type="radio" name="link_type[]" id="link_type_page" value="page" checked class="js-link-field__type">
+        <input type="radio" name="<?php echo $args['url']['name'] . '_type[]'; ?>" id="<?php echo $args['url']['name'] . '_type_page'; ?>" value="page" checked class="js-link-field__type">
         <span>Page</span>
       </div>
       <div class="audint-meta-checkbox-wrap">
-        <input type="radio" name="link_type[]" id="link_type_custom" value="custom" class="js-link-field__type">
+        <input type="radio" name="<?php echo $args['url']['name'] . '_type[]'; ?>" id="<?php echo $args['url']['name'] . '_type_custom'; ?>" value="custom" class="js-link-field__type">
         <span>Custom</span>
       </div>
       <div class="audint-meta-checkbox-wrap">
-        <input type="radio" name="link_type[]" id="link_type_none" value="none" class="js-link-field__type">
+        <input type="radio" name="<?php echo $args['url']['name'] . '_type[]'; ?>" id="<?php echo $args['url']['name'] . '_type_none'; ?>" value="none" class="js-link-field__type">
         <span>None</span>
       </div>
     </div>
