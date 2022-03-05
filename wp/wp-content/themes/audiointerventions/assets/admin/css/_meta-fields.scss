@@ -1,13 +1,18 @@
 .audint-meta-field-group {
   margin-bottom: 25px;
 
+  & + &,
+  .js-bicolor-text + & {
+    border-top: 1px solid #ddd;
+    padding-top: 30px;
+  }
+
   label {
     display: block;
   }
 
   &.inline {
     display: flex;
-    align-items: center;
     
     .audint-meta-field-group__left {
       margin-right: 8px;
@@ -89,6 +94,25 @@
 
   & + & {
     margin-left: 10px;
+  }
+}
+
+.audint-meta-link {
+  &__types {
+    margin-bottom: 10px;
+  }
+
+  &__pages, &__url-input-wrap, &__text-input-wrap {
+    margin-bottom: 10px;
+
+    label {
+      display: block;
+      margin-left: 1px;
+    }
+  }
+
+  &__tab-input-wrap {
+    margin-left: 1px;
   }
 }
 

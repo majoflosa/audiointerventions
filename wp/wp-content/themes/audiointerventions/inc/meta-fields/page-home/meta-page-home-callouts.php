@@ -19,7 +19,9 @@ $audint_defaults['home_callouts'] = [
   'callout_1_bicolor' => true,
   'callout_1_colored_words' => '2,3',
   'callout_1_body'  => '<p>From a personal consultation to knowledgeable advice, we will give you the attention to detail that you deserve.</p><p>Every element of your car\'s audio system, including the stereo, CD player, subwoofer and amplifiers will be just what you imagined. It will be installed precisely with fabricated elements if needed.</p>',
-  'callout_1_link'  => '/services',
+  'callout_1_link'  => home_url() . '/services/',
+  'callout_1_link_text'  => 'Our Services',
+  'callout_1_link_new_tab'  => false,
   'callout_1_image'  => ASSETS_URL . 'img/car-stereo.jpg',
   'callout_1_image_position'  => 'right',
   'callout_1_style'  => 'dark',
@@ -28,7 +30,9 @@ $audint_defaults['home_callouts'] = [
   'callout_2_bicolor' => true,
   'callout_2_colored_words' => '2,3,4',
   'callout_2_body'  => '<p>We offer top brand names like JL Audio, Focal and Dynaudio products are offered at competitive prices for both products and installation.</p><p>You\'ll feel confident leaving your car in our capable hands when you see our top-notch facilities and our high-quality completed work.</p>',
-  'callout_2_link'  => '/products',
+  'callout_2_link'  => home_url() . '/products/',
+  'callout_2_link_text'  => 'Our Products',
+  'callout_2_link_new_tab'  => false,
   'callout_2_image'  => ASSETS_URL . 'img/jl-audio.jpg',
   'callout_2_image_position'  => 'left',
   'callout_2_style'  => 'white',
@@ -37,7 +41,9 @@ $audint_defaults['home_callouts'] = [
   'callout_3_bicolor' => true,
   'callout_3_colored_words' => '0',
   'callout_3_body'  => '<p>Tour our facility, which houses a cabinet-grade woodworking facility, composite fabrication equipment and electronic diagnostics.</p><p>We can fabricate custom paneling and mounting brackets, integrate them into your factory wiring and even create factory-like wiring harnesses so that your factory wiring remains true to its original design.</p>',
-  'callout_3_link'  => '/about-us',
+  'callout_3_link'  => home_url() . '/about-us/',
+  'callout_3_link_text'  => 'Learn More About Us',
+  'callout_3_link_new_tab'  => false,
   'callout_3_image'  => ASSETS_URL . 'img/boat-audio.jpg',
   'callout_3_image_position'  => 'left',
   'callout_3_style'  => 'dark',
@@ -127,29 +133,33 @@ function audint_home_callouts_cb( $post ) {
           <?php
             // callout 1 link
             $callout_1_link_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_link', 'home_callouts', 'callout_1_link' );
+            $callout_1_link_text_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_link_text', 'home_callouts', 'callout_1_link_text' );
+            $callout_1_link_new_tab_value = audint_get_meta_or_default( $post->ID, 'audint_home_callout_1_link_new_tab', 'home_callouts', 'callout_1_link_new_tab' );
+            $callout_1_link_args = [
+              'label' => 'Link.',
+              'description' => 'Settings for the link displayed under the callout text.',
+              'url' => [
+                'name'  => 'audint_home_callout_1_link',
+                'id'    => 'audint_home_callout_1_link',
+                'default_value' => audint_get_default( 'home_callouts', 'callout_1_link' ),
+                'value' => $callout_1_link_value,
+                'type'  => 'page',
+              ],
+              'text'  => [
+                'name'  => 'audint_home_callout_1_link_text',
+                'id'  => 'audint_home_callout_1_link_text',
+                'default_value'  => audint_get_default( 'home_callouts', 'callout_1_link_text' ),
+                'value' => $callout_1_link_text_value,
+              ],
+              'new_tab'  => [
+                'name'  => 'audint_home_callout_1_link_tab',
+                'id'  => 'audint_home_callout_1_link_tab',
+                'default_value' => audint_get_default( 'home_callouts', 'callout_1_link_new_tab' ),
+                'value' => $callout_1_link_new_tab_value,
+              ],
+            ];
+            audint_meta_link( $callout_1_link_args );
           ?>
-          <div class="audint-meta-field-group inline">
-            <label for="audint_home_callout_1_link" class="audint-meta-field-group__left">
-              <strong>Link</strong>
-            </label>
-            <div class="audint-meta-field-group__right grow">
-              <div class="audint-meta-link-group">
-                <div class="audint-meta-checkbox-wrap">
-                  <input type="radio" value="page" checked>
-                  <span>Page</span>
-                </div>
-                <div class="audint-meta-checkbox-wrap">
-                  <input type="radio" value="post">
-                  <span>Post</span>
-                </div>
-                <div class="audint-meta-checkbox-wrap">
-                  <input type="radio" value="other">
-                  <span>Custom</span>
-                </div>
-              </div>
-              <input type="url" name="audint_home_callout_1_link" id="audint_home_callout_1_link" value="<?php echo $callout_1_link_value; ?>">
-            </div>
-          </div>
           
           <?php
             // callout 1 image

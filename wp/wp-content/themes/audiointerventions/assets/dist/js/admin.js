@@ -191,6 +191,115 @@ if (bicolorTextFields.length) {
 
 /***/ }),
 
+/***/ "./assets/admin/js/meta-global/meta-link.js":
+/*!**************************************************!*\
+  !*** ./assets/admin/js/meta-global/meta-link.js ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+class MetaLink {
+  constructor(el) {
+    this.dom = {
+      el
+    };
+    this.onTypeChange = this.onTypeChange.bind(this);
+    this.onPageChange = this.onPageChange.bind(this);
+    this.setDomElements();
+    this.setProperties();
+    this.bindEvents();
+    this.displaySelectedType();
+  }
+
+  setDomElements() {
+    this.dom.type = this.dom.el.querySelectorAll('.js-link-field__type');
+    this.dom.pageSection = this.dom.el.querySelector('.js-link-field__page-section');
+    this.dom.pageSelector = this.dom.el.querySelector('.js-link-field__page-selector');
+    this.dom.textWrap = this.dom.el.querySelector('.js-link-field__text-input-wrap');
+    this.dom.textInput = this.dom.el.querySelector('.js-link-field__text-input');
+    this.dom.urlWrap = this.dom.el.querySelector('.js-link-field__url-input-wrap');
+    this.dom.urlInput = this.dom.el.querySelector('.js-link-field__url-input');
+    this.dom.tabWrap = this.dom.el.querySelector('.js-link-field__tab-input-wrap');
+    this.dom.openInNewTab = this.dom.tabWrap.querySelector('input');
+  }
+
+  setProperties() {
+    this.setSelectedType();
+  }
+
+  bindEvents() {
+    this.dom.type.forEach(radio => {
+      radio.addEventListener('change', this.onTypeChange);
+    });
+    this.dom.pageSelector.addEventListener('change', this.onPageChange);
+  }
+
+  setSelectedType() {
+    this.dom.type.forEach(radio => {
+      if (radio.checked) {
+        this.urlType = radio.value;
+      }
+    });
+    if (!this.urlType) this.urlType = 'page';
+    this.url = this.dom.urlInput.value;
+    this.page = this.dom.pageSelector.value;
+    this.label = this.dom.textInput.value;
+    this.openInNewTab = this.dom.openInNewTab.checked;
+  }
+
+  displaySelectedType() {
+    if (this.urlType === 'page') {
+      this.dom.urlWrap.classList.add('hidden');
+      this.dom.pageSection.classList.remove('hidden');
+      this.dom.textWrap.classList.remove('hidden');
+      this.dom.tabWrap.classList.remove('hidden');
+    } else if (this.urlType === 'custom') {
+      this.dom.urlWrap.classList.remove('hidden');
+      this.dom.pageSection.classList.add('hidden');
+      this.dom.textWrap.classList.remove('hidden');
+      this.dom.tabWrap.classList.remove('hidden');
+    } else if (this.urlType === 'none') {
+      this.dom.urlWrap.classList.add('hidden');
+      this.dom.pageSection.classList.add('hidden');
+      this.dom.textWrap.classList.add('hidden');
+      this.dom.tabWrap.classList.add('hidden');
+    }
+  }
+
+  updateFieldValues() {
+    this.dom.urlInput.value = this.url;
+    this.dom.pageSelector.value = this.page;
+    this.dom.textInput = this.label;
+    this.dom.openInNewTab.checked = this.openInNewTab;
+  }
+
+  onTypeChange() {
+    this.setSelectedType();
+    this.displaySelectedType();
+  }
+
+  onPageChange(e) {
+    this.url = e.currentTarget.value;
+    this.page = e.currentTarget.value;
+    this.updateFieldValues();
+  }
+
+}
+
+window.audintAdmin = window.audintAdmin || {};
+const metaLinks = document.body.querySelectorAll('.js-link-field');
+
+if (metaLinks.length) {
+  window.audintAdmin.linkFields = [];
+  metaLinks.forEach(field => {
+    window.audintAdmin.linkFields.push(new MetaLink(field));
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (MetaLink);
+
+/***/ }),
+
 /***/ "./assets/admin/js/meta-global/meta-media-library.js":
 /*!***********************************************************!*\
   !*** ./assets/admin/js/meta-global/meta-media-library.js ***!
@@ -357,7 +466,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _global_character_count__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./global/character-count */ "./assets/admin/js/global/character-count.js");
 /* harmony import */ var _meta_global_meta_bicolor_text__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./meta-global/meta-bicolor-text */ "./assets/admin/js/meta-global/meta-bicolor-text.js");
 /* harmony import */ var _meta_global_meta_media_library__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./meta-global/meta-media-library */ "./assets/admin/js/meta-global/meta-media-library.js");
-/* harmony import */ var _css_admin_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css/admin.scss */ "./assets/admin/css/admin.scss");
+/* harmony import */ var _meta_global_meta_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./meta-global/meta-link */ "./assets/admin/js/meta-global/meta-link.js");
+/* harmony import */ var _css_admin_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../css/admin.scss */ "./assets/admin/css/admin.scss");
+
 
 
 

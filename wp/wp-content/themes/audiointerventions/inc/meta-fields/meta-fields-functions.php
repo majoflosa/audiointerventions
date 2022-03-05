@@ -48,7 +48,7 @@ function audint_meta_textarea( $args ) {
     </label>
     <div class="audint-meta-field-group__right grow js-character-count">
       <textarea name="<?php echo $args['name']; ?>" id="<?php echo $args['id']; ?>" rows="<?php echo $args['rows']; ?>" class="js-character-count__field"><?php echo esc_textarea( $args['value'] ); ?></textarea>
-      <small>Character count: <strong class="js-character-count__label"><?php echo count($args['value']); ?></strong>
+      <small>Character count: <strong class="js-character-count__label"><?php echo strlen($args['value']); ?></strong>
       <?php if ( isset( $args['recommended_length'] ) ) : ?>
         <span> | (Recommended: <?php echo $args['recommended_length']; ?>)</span>
       <?php endif; ?>
@@ -197,4 +197,82 @@ function audint_meta_wp_editor( $args ) {
   </div>
 
   <?php
+}
+
+/**
+ * Outputs a link field
+ * 
+ * $args: label, description, default_value, value, name, id, text, in_new_tab
+ */
+function audint_meta_link( $args ) {
+  $pages_args = [ 'post_type' => 'page', 'posts_per_page' => 30 ];
+  $pages_query = new WP_Query( $pages_args );
+  $pages = [];
+  if ( $pages_query->have_posts() ) : 
+    while ( $pages_query->have_posts() ) : $pages_query->the_post();
+      $pages[] = [
+        'title' => get_the_title(),
+        'permalink' => get_the_permalink(),
+      ];
+    endwhile;
+  endif;
+?>
+
+<div class="audint-meta-field-group inline">
+  <label for="<?php echo $args['url']['name']; ?>" class="audint-meta-field-group__left">
+    <strong><?php echo $args['label']; ?></strong>
+    <?php if ( isset( $args['description'] ) ) : ?>
+      <span><?php echo $args['description']; ?></span>
+    <?php endif; ?>
+    <?php if ( isset( $args['url']['default_value'] ) ) : ?>
+      <span> (If blank, text defaults to <em>"<?php echo $args['text']['default_value']; ?>"</em> and link to <em>"<?php echo $args['url']['default_value']; ?>"</em>)</span>
+    <?php endif; ?>
+  </label>
+  <div class="audint-meta-field-group__right audint-meta-link grow js-link-field">
+    <div class="audint-meta-link__types js-link-field__types">
+      <div class="audint-meta-checkbox-wrap">
+        <input type="radio" name="link_type[]" id="link_type_page" value="page" checked class="js-link-field__type">
+        <span>Page</span>
+      </div>
+      <div class="audint-meta-checkbox-wrap">
+        <input type="radio" name="link_type[]" id="link_type_custom" value="custom" class="js-link-field__type">
+        <span>Custom</span>
+      </div>
+      <div class="audint-meta-checkbox-wrap">
+        <input type="radio" name="link_type[]" id="link_type_none" value="none" class="js-link-field__type">
+        <span>None</span>
+      </div>
+    </div>
+
+    <div class="audint-meta-link__pages js-link-field__page-section" data-type="page">
+      <label for="">Select Page: </label>
+      <select name="select_page_link" id="select_page_link" class="js-link-field__page-selector">
+        <option value="">-- Select Page --</option>
+        <?php foreach ($pages as $page) : ?>
+          <option value="<?php echo $page['permalink']; ?>" <?php echo $args['url']['value'] === $page['permalink'] ? 'selected' : ''; ?>>
+            <?php echo $page['title']; ?>
+          </option>
+        <?php endforeach; ?>
+      </select>
+    </div>
+
+    <div class="audint-meta-link__url-input-wrap js-link-field__url-input-wrap">
+      <label for="<?php echo $args['url']['name']; ?>">Link URL:</label>
+      <input type="url" name="<?php echo $args['url']['name']; ?>" id="<?php echo $args['url']['id']; ?>" value="<?php echo $args['url']['value']; ?>" class="js-link-field__url-input">
+    </div>
+
+    <div class="audint-meta-link__text-input-wrap js-link-field__text-input-wrap">
+      <label for="<?php echo $args['text']['name']; ?>">Link label:</label>
+      <input type="text" name="<?php echo $args['text']['name']; ?>" id="<?php echo $args['text']['id']; ?>" value="<?php echo $args['text']['value']; ?>" class="js-link-field__text-input">
+    </div>
+
+    <div class="audint-meta-link__tab-input-wrap js-link-field__tab-input-wrap">
+      <div class="audint-meta-checkbox-wrap">
+        <input type="checkbox" name="<?php echo $args['new_tab']['name']; ?>" id="<?php echo $args['new_tab']['id']; ?>" value="1" <?php echo $args['new_tab']['value']; ?>>
+        <span>Open in new tab</span>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
 }
