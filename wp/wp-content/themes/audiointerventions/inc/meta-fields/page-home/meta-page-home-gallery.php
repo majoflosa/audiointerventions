@@ -136,6 +136,75 @@ function audint_home_gallery_cb( $post ) {
 }
 
 function audint_home_gallery_save_meta( $post_id ) {
+  $is_autosave = wp_is_post_autosave( $post_id );
+  $is_revision = wp_is_post_revision( $post_id );
+  $is_valid_nonce = audint_is_valid_nonce( 'audint_home_gallery_meta', 'audint_home_gallery_meta_nonce' );
+  $has_capability = current_user_can( 'edit_posts' );
 
+  if ( $is_autosave || $is_revision || !$is_valid_nonce || !$has_capability ) {
+    return;
+  }
+
+  // heading
+  $gallery_heading = isset( $_POST['audint_home_gallery_heading'] )
+    ? $_POST['audint_home_gallery_heading']
+    : audint_get_default( 'home_gallery', 'heading' );
+  $sanitized_heading = trim( sanitize_text_field( $gallery_heading ) );
+  update_post_meta( $post_id, 'audint_home_gallery_heading', $sanitized_heading );
+
+  // use bicolor
+  $gallery_bicolor = isset( $_POST['audint_home_gallery_bicolor'] ) ? 1 : 0;
+  update_post_meta( $post_id, 'audint_home_gallery_bicolor', $gallery_bicolor );
+
+  // colored words
+  $gallery_colored_words = isset( $_POST['audint_home_gallery_colored_words'] )
+    ? $_POST['audint_home_gallery_colored_words']
+    : audint_get_default( 'home_gallery', 'colored_words' );
+  $sanitized_words = trim( sanitize_text_field( $gallery_colored_words ) );
+  update_post_meta( $post_id, 'audint_home_gallery_colored_words', $sanitized_words );
+
+  // text
+  $gallery_text = isset( $_POST['audint_home_gallery_text'] )
+    ? $_POST['audint_home_gallery_text']
+    : audint_get_default( 'home_gallery', 'text' );
+  $sanitized_text = trim( sanitize_textarea_field( $gallery_text ) );
+  update_post_meta( $post_id, 'audint_home_gallery_text', $sanitized_text );
+
+  // link
+  $gallery_link = isset( $_POST['audint_home_gallery_link'] )
+    ? $_POST['audint_home_gallery_link']
+    : audint_get_default( 'home_gallery', 'link' );
+  $sanitized_link = trim( sanitize_url( $gallery_link ) );
+  update_post_meta( $post_id, 'audint_home_gallery_link', $sanitized_link );
+
+  // link type
+  $gallery_link_type = isset( $_POST['audint_home_gallery_link_type'] )
+    ? $_POST['audint_home_gallery_link_type'][0]
+    : audint_get_default( 'home_gallery', 'link_type' );
+  $sanitized_link_type = in_array( $gallery_link_type, ['page', 'custom', 'none'] )
+    ? $gallery_link_type
+    : audint_get_default( 'home_gallery', 'link_type' );
+  update_post_meta( $post_id, 'audint_home_gallery_link_type', $sanitized_link_type );
+
+  // link text
+  $gallery_link_text = isset( $_POST['audint_home_gallery_link_text'] )
+    ? $_POST['audint_home_gallery_link_text']
+    : audint_get_default( 'home_gallery', 'link_text' );
+  $sanitized_link_text = trim( sanitize_text_field( $gallery_link_text ) );
+  update_post_meta( $post_id, 'audint_home_gallery_link_text', $sanitized_link_text );
+
+  // open in new tab
+  $gallery_link_new_tab = isset( $_POST['audint_home_gallery_link_new_tab'] ) ? 1 : 0;
+  update_post_meta( $post_id, 'audint_home_gallery_link_new_tab', $gallery_link_new_tab );
+
+  // images
+  $gallery_image_keys = ['image_1', 'image_2', 'image_3'];
+  foreach( $gallery_image_keys as $key ) {
+    $gallery_image = isset( $_POST['audint_home_gallery_' . $key] )
+      ? $_POST['audint_home_gallery_' . $key]
+      : audint_get_default( 'home_gallery', $key );
+    $sanitized_image = trim( sanitize_url( $gallery_image ) );
+    update_post_meta( $post_id, 'audint_home_gallery_' . $key, $sanitized_image );
+  }
 }
 add_action( 'save_post', 'audint_home_gallery_save_meta' );
