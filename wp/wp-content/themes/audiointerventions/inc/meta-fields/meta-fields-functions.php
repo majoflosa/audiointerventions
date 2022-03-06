@@ -231,15 +231,15 @@ function audint_meta_link( $args ) {
   <div class="audint-meta-field-group__right audint-meta-link grow js-link-field">
     <div class="audint-meta-link__types js-link-field__types">
       <div class="audint-meta-checkbox-wrap">
-        <input type="radio" name="<?php echo $args['url']['name'] . '_type[]'; ?>" id="<?php echo $args['url']['name'] . '_type_page'; ?>" value="page" checked class="js-link-field__type">
+        <input type="radio" name="<?php echo $args['url']['name'] . '_type[]'; ?>" id="<?php echo $args['url']['name'] . '_type_page'; ?>" value="page" <?php echo $args['url']['type'] === 'page' ? 'checked' : ''; ?> class="js-link-field__type">
         <span>Page</span>
       </div>
       <div class="audint-meta-checkbox-wrap">
-        <input type="radio" name="<?php echo $args['url']['name'] . '_type[]'; ?>" id="<?php echo $args['url']['name'] . '_type_custom'; ?>" value="custom" class="js-link-field__type">
+        <input type="radio" name="<?php echo $args['url']['name'] . '_type[]'; ?>" id="<?php echo $args['url']['name'] . '_type_custom'; ?>" value="custom" <?php echo $args['url']['type'] === 'custom' ? 'checked' : ''; ?> class="js-link-field__type">
         <span>Custom</span>
       </div>
       <div class="audint-meta-checkbox-wrap">
-        <input type="radio" name="<?php echo $args['url']['name'] . '_type[]'; ?>" id="<?php echo $args['url']['name'] . '_type_none'; ?>" value="none" class="js-link-field__type">
+        <input type="radio" name="<?php echo $args['url']['name'] . '_type[]'; ?>" id="<?php echo $args['url']['name'] . '_type_none'; ?>" value="none" <?php echo $args['url']['type'] === 'none' ? 'checked' : ''; ?> class="js-link-field__type">
         <span>None</span>
       </div>
     </div>
@@ -268,7 +268,7 @@ function audint_meta_link( $args ) {
 
     <div class="audint-meta-link__tab-input-wrap js-link-field__tab-input-wrap">
       <div class="audint-meta-checkbox-wrap">
-        <input type="checkbox" name="<?php echo $args['new_tab']['name']; ?>" id="<?php echo $args['new_tab']['id']; ?>" value="1" <?php echo $args['new_tab']['value']; ?>>
+        <input type="checkbox" name="<?php echo $args['new_tab']['name']; ?>" id="<?php echo $args['new_tab']['id']; ?>" value="1" <?php echo $args['new_tab']['value'] ? 'checked' : ''; ?>>
         <span>Open in new tab</span>
       </div>
     </div>

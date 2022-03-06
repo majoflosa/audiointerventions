@@ -269,7 +269,7 @@ class MetaLink {
   updateFieldValues() {
     this.dom.urlInput.value = this.url;
     this.dom.pageSelector.value = this.page;
-    this.dom.textInput = this.label;
+    this.dom.textInput.value = this.label;
     this.dom.openInNewTab.checked = this.openInNewTab;
   }
 

@@ -22,6 +22,7 @@ $audint_defaults['home_callouts'] = [
   'callout_1_link'  => home_url() . '/services/',
   'callout_1_link_text'  => 'Our Services',
   'callout_1_link_new_tab'  => false,
+  'callout_1_link_type'  => 'page',
   'callout_1_image'  => ASSETS_URL . 'img/car-stereo.jpg',
   'callout_1_image_position'  => 'right',
   'callout_1_style'  => 'dark',
@@ -33,6 +34,7 @@ $audint_defaults['home_callouts'] = [
   'callout_2_link'  => home_url() . '/products/',
   'callout_2_link_text'  => 'Our Products',
   'callout_2_link_new_tab'  => false,
+  'callout_2_link_type'  => 'page',
   'callout_2_image'  => ASSETS_URL . 'img/jl-audio.jpg',
   'callout_2_image_position'  => 'left',
   'callout_2_style'  => 'light',
@@ -44,6 +46,7 @@ $audint_defaults['home_callouts'] = [
   'callout_3_link'  => home_url() . '/about-us/',
   'callout_3_link_text'  => 'Learn More About Us',
   'callout_3_link_new_tab'  => false,
+  'callout_3_link_type'  => 'page',
   'callout_3_image'  => ASSETS_URL . 'img/boat-audio.jpg',
   'callout_3_image_position'  => 'right',
   'callout_3_style'  => 'dark',
@@ -151,7 +154,7 @@ function audint_home_callouts_cb( $post ) {
                   'id'    => 'audint_home_' . $key . '_link',
                   'default_value' => audint_get_default( 'home_callouts', $key . '_link' ),
                   'value' => $callout_link_value,
-                  'type'  => 'page',
+                  'type'  => audint_get_meta_or_default( $post->ID, 'audint_home_' . $key . '_link_type', 'home_callouts', $key . '_link_type' ),
                 ],
                 'text'  => [
                   'name'  => 'audint_home_' . $key . '_link_text',
@@ -160,8 +163,8 @@ function audint_home_callouts_cb( $post ) {
                   'value' => $callout_link_text_value,
                 ],
                 'new_tab'  => [
-                  'name'  => 'audint_home_' . $key . '_link_tab',
-                  'id'  => 'audint_home_' . $key . '_link_tab',
+                  'name'  => 'audint_home_' . $key . '_link_new_tab',
+                  'id'  => 'audint_home_' . $key . '_link_new_tab',
                   'default_value' => audint_get_default( 'home_callouts', $key . '_link_new_tab' ),
                   'value' => $callout_link_new_tab_value,
                 ],
@@ -181,6 +184,7 @@ function audint_home_callouts_cb( $post ) {
               'layout'  => [
                 'label' => 'Image Position',
                 'input_type'  => 'radio',
+                'name'  => 'audint_home_' . $key . '_image_position',
                 'options'     => [
                   'Left' => [
                     'name'  => 'audint_home_' . $key . '_image_position[]',
@@ -201,6 +205,7 @@ function audint_home_callouts_cb( $post ) {
               'style' => [
                 'label' => 'Color Style',
                 'input_type'  => 'radio',
+                'name'  => 'audint_home_' . $key . '_style',
                 'options'     => [
                   'Dark' => [
                     'name'  => 'audint_home_' . $key . '_style[]',
@@ -231,3 +236,105 @@ function audint_home_callouts_cb( $post ) {
 
   <?php
 }
+
+function audint_home_callouts_save_meta( $post_id ) {
+  $is_autosave = wp_is_post_autosave( $post_id );
+  $is_revision = wp_is_post_revision( $post_id );
+  $is_valid_nonce = audint_is_valid_nonce( 'audint_home_callouts_meta', 'audint_home_callouts_meta_nonce' );
+  $has_capability = current_user_can( 'edit_posts' );
+
+  if ( $is_autosave || $is_revision || !$is_valid_nonce || !$has_capability ) {
+    return;
+  }
+
+  // main section heading
+  $heading = isset( $_POST['audint_home_callouts_heading'] )
+    ? $_POST['audint_home_callouts_heading']
+    : audint_get_default( 'home_callouts', 'heading' );
+  $sanitized_heading = trim( sanitize_text_field( $heading ) );
+  update_post_meta( $post_id, 'audint_home_callouts_heading', $sanitized_heading );
+
+  $callout_keys = [ 'callout_1', 'callout_2', 'callout_3' ];
+  foreach ( $callout_keys as $key ) :
+    // callout title
+    $title = isset( $_POST['audint_home_' . $key . '_title'] )
+      ? $_POST['audint_home_' . $key . '_title']
+      : audint_get_default( 'home_callouts', $key . '_title' );
+    $sanitized_title = trim( sanitize_text_field( $title ) );
+    update_post_meta( $post_id, 'audint_home_' . $key . '_title', $sanitized_title );
+
+    // is bicolor
+    $is_bicolor = isset( $_POST['audint_home_' . $key . '_bicolor'] ) ? 1 : 0;
+    update_post_meta( $post_id, 'audint_home_' . $key . '_bicolor', $is_bicolor ); 
+
+    // colored words
+    $colored_words = isset( $_POST['audint_home_' . $key . '_colored_words'] )
+      ? $_POST['audint_home_' . $key . '_colored_words']
+      : audint_get_default( 'home_callouts', $key . '_colored_words' );
+    $sanitized_words = trim( sanitize_text_field( $colored_words ) );
+    update_post_meta( $post_id, 'audint_home_' . $key . '_colored_words', $sanitized_words );
+
+    // callout text
+    $callout_text = isset( $_POST['audint_home_' . $key . '_body'] )
+      ? $_POST['audint_home_' . $key . '_body']
+      : audint_get_default( 'home_callouts', $key . '_body' );
+    $sanitized_text = wp_kses_post( $callout_text );
+    update_post_meta( $post_id, 'audint_home_' . $key . '_body', $sanitized_text );
+
+    // link type
+    $callout_link_type = isset( $_POST['audint_home_' . $key . '_link_type'] )
+      ? $_POST['audint_home_' . $key . '_link_type'][0]
+      : audint_get_default( 'home_callouts', $key . '_link_type' );
+    $sanitized_link_type = in_array( $callout_link_type, ['page', 'custom', 'none'] ) 
+      ? $callout_link_type
+      : audint_get_default( 'home_callouts', $key . '_link_type' );
+    update_post_meta( $post_id, 'audint_home_' . $key . '_link_type', $sanitized_link_type );
+
+    // link url
+    $callout_link_url = isset( $_POST['audint_home_' . $key . '_link'] )
+      ? $_POST['audint_home_' . $key . '_link']
+      : audint_get_default( 'home_callouts', $key . '_link' );
+    $sanitized_url = trim( sanitize_url( $callout_link_url ) );
+    update_post_meta( $post_id, 'audint_home_' . $key . '_link', $sanitized_url );
+
+    // link label
+    $callout_link_label = isset( $_POST['audint_home_' . $key . '_link_text'] )
+      ? $_POST['audint_home_' . $key . '_link_text']
+      : audint_get_default( 'home_callouts', $key . '_link_text' );
+    $sanitized_link_label = trim( sanitize_text_field( $callout_link_label ) );
+    update_post_meta( $post_id, 'audint_home_' . $key . '_link_text', $sanitized_link_label );
+
+    // open in new tab
+    $callout_link_new_tab = isset( $_POST['audint_home_' . $key . '_link_new_tab'] ) ? 1 : 0;
+      // ? $_POST['audint_home_' . $key . '_link_new_tab']
+      // : audint_get_default( 'home_callouts', $key . '_link_new_tab' );
+    update_post_meta( $post_id, 'audint_home_' . $key . '_link_new_tab', $callout_link_new_tab );
+
+    // callout image
+    $callout_image = isset( $_POST['audint_home_' . $key . '_image'] )
+      ? $_POST['audint_home_' . $key . '_image']
+      : audint_get_default( 'home_callouts', $key . '_image' );
+    $sanitized_image = trim( sanitize_url( $callout_image ) );
+    update_post_meta( $post_id, 'audint_home_' . $key . '_image', $sanitized_image );
+
+    // callout layout
+    $callout_layout = isset( $_POST['audint_home_' . $key . '_image_position'] )
+      ? $_POST['audint_home_' . $key . '_image_position'][0]
+      : audint_get_default( 'home_callouts', $key . '_image_position' );
+    $sanitized_layout = in_array( $callout_layout, ['left', 'right'] )
+      ? $callout_layout
+      : audint_get_default( 'home_callouts', $key . '_image_position' );
+    update_post_meta( $post_id, 'audint_home_' . $key . '_image_position', $sanitized_layout );
+
+    // callout style
+    $callout_style = isset( $_POST['audint_home_' . $key . '_style'] )
+      ? $_POST['audint_home_' . $key . '_style'][0]
+      : audint_get_default( 'home_callouts', $key . '_style' );
+    $sanitized_style = in_array( $callout_style, ['dark', 'light'] )
+      ? $callout_style
+      : audint_get_default( 'home_callouts', $key . '_style' );
+    update_post_meta( $post_id, 'audint_home_' . $key . '_style', $sanitized_style );
+
+  endforeach;
+}
+add_action( 'save_post', 'audint_home_callouts_save_meta' );
