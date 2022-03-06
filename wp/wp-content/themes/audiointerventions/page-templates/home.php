@@ -75,70 +75,86 @@ get_header();
 <!-- = = = = = = = = = = = = = = = = = = = = =
   BEGIN CALLOUT SECTIONS
 = = = = = = = = = = = = = = = = = = = = = = -->
+<?php
+  $home_callouts = [
+    'heading' => audint_get_meta_or_default( get_the_ID(), 'audint_home_callouts_heading', 'home_callouts', 'heading' ),
+    'callouts' => [],
+  ];
+  $home_callout_keys = ['callout_1', 'callout_2', 'callout_3'];
+  foreach( $home_callout_keys as $key ) :
+    $home_callouts['callouts'][$key] = [
+      'title' => audint_get_meta_or_default( get_the_ID(), 'audint_home_' . $key . '_title', 'home_callouts', $key . '_title' ),
+      'bicolor' => audint_get_meta_or_default( get_the_ID(), 'audint_home_' . $key . '_bicolor', 'home_callouts', $key . '_bicolor' ),
+      'colored_words' => audint_get_meta_or_default( get_the_ID(), 'audint_home_' . $key . '_colored_words', 'home_callouts', $key . '_colored_words' ),
+      'body' => audint_get_meta_or_default( get_the_ID(), 'audint_home_' . $key . '_body', 'home_callouts', $key . '_body' ),
+      'link_type' => audint_get_meta_or_default( get_the_ID(), 'audint_home_' . $key . '_link_type', 'home_callouts', $key . '_link_type' ),
+      'link' => audint_get_meta_or_default( get_the_ID(), 'audint_home_' . $key . '_link', 'home_callouts', $key . '_link' ),
+      'link_text' => audint_get_meta_or_default( get_the_ID(), 'audint_home_' . $key . '_link_text', 'home_callouts', $key . '_link_text' ),
+      'link_new_tab' => audint_get_meta_or_default( get_the_ID(), 'audint_home_' . $key . '_link_new_tab', 'home_callouts', $key . '_link_new_tab' ),
+      'image' => audint_get_meta_or_default( get_the_ID(), 'audint_home_' . $key . '_image', 'home_callouts', $key . '_image' ),
+      'layout' => audint_get_meta_or_default( get_the_ID(), 'audint_home_' . $key . '_image_position', 'home_callouts', $key . '_image_position' ),
+      'style' => audint_get_meta_or_default( get_the_ID(), 'audint_home_' . $key . '_style', 'home_callouts', $key . '_style' ),
+    ];
+  endforeach;
+?>
 <section class="section-wrap section-wrap--full-width why-us-section">
   <div class="section-wrap__inner">
 
     <header class="section-header">
-      <h2 class="section-header__title section-header__title--center section-header__title--big">Why Audio Interventions</h2>
+      <h2 class="section-header__title section-header__title--center section-header__title--big">
+        <?php echo $home_callouts['heading']; ?>
+      </h2>
     </header>
 
-    <article class="feature-callout">
-      <div class="feature-callout__content">
-        <div class="feature-callout__content-inner">
-          <header class="feature-callout__header">
-            <h2 class="feature-callout__title type-title-2 color-lightest">Work Directly <span class="color-primary">with Experts</span></h2>
-          </header>
-          <main class="feature-callout__body type-body-2 color-light">
-            <?php echo site_url( '/services'); ?>
-            <p>From a personal consultation to knowledgeable advice, we will give you the attention to detail that you deserve.</p>
-            <p>Every element of your car's audio system, including the stereo, CD player, subwoofer and amplifiers will be just what you imagined. It will be installed precisely with fabricated elements if needed.</p>
-          </main>
-          <footer class="feature-callout__footer">
-            <a href="#" class="feature-callout__cta-btn">Our Services »</a>
-          </footer>
+    <?php foreach ($home_callouts['callouts'] as $key => $callout) : ?>
+      <?php
+        $article_classes = 'feature-callout';
+        $article_classes .= $callout['layout'] === 'left' ? ' feature-callout--reverse' : '';
+        $article_classes .= $callout['style'] === 'light' ? ' feature-callout--light' : '';
+        $title_classes = 'feature-callout__title type-title-2';
+        $title_classes .= $callout['style'] === 'dark' ? ' color-lightest' : ' color-darkest';
+        $body_classes = 'feature-callout__body type-body-2';
+        $body_classes .= $callout['style'] === 'dark' ? ' color-light' : ' color-dark';
+      ?>
+      <article class="<?php echo $article_classes; ?>">
+        <div class="feature-callout__content">
+          <div class="feature-callout__content-inner">
+            <header class="feature-callout__header">
+              <h2 class="<?php echo $title_classes; ?>">
+              <?php if ( $callout['bicolor'] ) :
+                $words = explode( ' ', $callout['title'] );
+                $title_colored_words_arr = explode( ',', $callout['colored_words'] );
+                $words_index = 0;
+              ?>
+                <?php foreach ( $words as $word ) : ?>
+                  <?php if ( in_array( $words_index, $title_colored_words_arr, false) ) : ?>
+                    <span class="color-primary"><?php echo $word . ' '; ?></span>
+                  <?php else : ?>
+                    <?php echo $word . ' '; ?>
+                  <?php endif; ?>
+                <?php $words_index++; endforeach; ?>
+              <?php else : ?>
+                <?php echo $callout['title']; ?>
+              <?php endif; ?>
+              </h2>
+            </header>
+            <main class="<?php echo $body_classes; ?>">
+              <?php echo $callout['body']; ?>
+            </main>
+            <footer class="feature-callout__footer">
+              <a
+                href="<?php echo $callout['link']; ?>"
+                <?php echo $callout['link_new_tab'] ? 'target="_blank"' : ''; ?>
+                class="feature-callout__cta-btn">
+                <?php echo $callout['link_text']; ?> »
+              </a>
+            </footer>
+          </div><!-- end content-inner -->
+          <div class="grid-flag" style="background-image: url('<?php echo ASSTES_URL; ?>/img/grid-flag.svg');"></div>
         </div>
-        <div class="grid-flag" style="background-image: url('./img/grid-flag.svg');"></div>
-      </div>
-      <div class="feature-callout__image" style="background-image: url('./img/car-stereo.jpg');"></div>
-    </article>
-    
-    <article class="feature-callout feature-callout--reverse feature-callout--light">
-      <div class="feature-callout__content">
-        <div class="feature-callout__content-inner">
-          <header class="feature-callout__header">
-            <h2 class="feature-callout__title type-title-2 color-darkest">Get Only <span class="color-primary">Top Brand Equipment</span></h2>
-          </header>
-          <main class="feature-callout__body type-body-2 color-dark">
-            <p>We offer top brand names like JL Audio, Focal and Dynaudio products are offered at competitive prices for both products and installation.</p>
-            <p>You'll feel confident leaving your car in our capable hands when you see our top-notch facilities and our high-quality completed work.</p>
-          </main>
-          <footer class="feature-callout__footer">
-            <a href="#" class="feature-callout__cta-btn">Our Products »</a>
-          </footer>
-        </div>
-        <div class="grid-flag" style="background-image: url('./img/grid-flag.svg');"></div>
-      </div>
-      <div class="feature-callout__image" style="background-image: url('./img/jl-audio.jpg');"></div>
-    </article>
-
-    <article class="feature-callout">
-      <div class="feature-callout__content">
-        <div class="feature-callout__content-inner">
-          <header class="feature-callout__header">
-            <h2 class="feature-callout__title type-title-2 color-lightest"><span class="color-primary">Expert</span> Facilities And Technicians</h2>
-          </header>
-          <main class="feature-callout__body type-body-2 color-light">
-            <p>Tour our facility, which houses a cabinet-grade woodworking facility, composite fabrication equipment and electronic diagnostics.</p>
-            <p>We can fabricate custom paneling and mounting brackets, integrate them into your factory wiring and even create factory-like wiring harnesses so that your factory wiring remains true to its original design.</p>
-          </main>
-          <footer class="feature-callout__footer">
-            <a href="#" class="feature-callout__cta-btn">Learn More About Us »</a>
-          </footer>
-        </div>
-        <div class="grid-flag" style="background-image: url('./img/grid-flag.svg');"></div>
-      </div>
-      <div class="feature-callout__image" style="background-image: url('./img/boat-audio.jpg');"></div>
-    </article>
+        <div class="feature-callout__image" style="background-image: url('<?php echo $callout["image"]; ?>');"></div>
+      </article>
+    <?php endforeach; ?>
 
   </div>
 </section>
