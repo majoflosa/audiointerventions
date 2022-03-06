@@ -150,7 +150,7 @@ get_header();
               </a>
             </footer>
           </div><!-- end content-inner -->
-          <div class="grid-flag" style="background-image: url('<?php echo ASSTES_URL; ?>/img/grid-flag.svg');"></div>
+          <div class="grid-flag" style="background-image: url('<?php echo ASSETS_URL; ?>/img/grid-flag.svg');"></div>
         </div>
         <div class="feature-callout__image" style="background-image: url('<?php echo $callout["image"]; ?>');"></div>
       </article>
