@@ -163,6 +163,18 @@ get_header();
 <!-- = = = = = = = = = = = = = = = = = = = = =
   BEGIN SHOW OFF SECTION
 = = = = = = = = = = = = = = = = = = = = = = -->
+<?php
+  $home_gallery_heading = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_heading', 'home_gallery', 'heading' );
+  $home_gallery_bicolor = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_bicolor', 'home_gallery', 'bicolor' );
+  $home_gallery_colored_words = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_colored_words', 'home_gallery', 'colored_words' );
+  $home_gallery_text = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_text', 'home_gallery', 'text' );
+  $home_gallery_link = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_link', 'home_gallery', 'link' );
+  $home_gallery_link_text = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_link_text', 'home_gallery', 'link_text' );
+  $home_gallery_link_new_tab = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_link_new_tab', 'home_gallery', 'link_new_tab' );
+  $home_gallery_img_1 = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_image_1', 'home_gallery', 'image_1' );
+  $home_gallery_img_2 = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_image_2', 'home_gallery', 'image_2' );
+  $home_gallery_img_3 = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_image_3', 'home_gallery', 'image_3' );
+?>
 <section class="section-wrap section-wrap--gray show-off-section">
   <div class="section-wrap__inner">
     
@@ -170,10 +182,29 @@ get_header();
       <div class="grid__cell col-6">
         <div class="show-off__left">
           <div class="show-off__left-content">
-            <h2 class="show-off__title">Show off your <span class="color-primary">new sound system</span></h2>
-            <p class="show-off__text">when you choose us for products and installation designed to fit your lifestyle</p>
+            <h2 class="show-off__title">
+              <?php if ( $home_gallery_bicolor ) :
+                $words = explode( ' ', $home_gallery_heading );
+                $home_gallery_colored_words_arr = explode( ',', $home_gallery_colored_words );
+                $words_index = 0;
+              ?>
+                <?php foreach ($words as $word) : ?>
+                  <?php if ( in_array( $words_index, $home_gallery_colored_words_arr, false ) ) : ?>
+                    <span class="color-primary"><?php echo $word . ' '; ?></span>
+                  <?php else : ?>
+                    <?php echo $word . ' '; ?>
+                  <?php endif;
+                  $words_index++;
+                endforeach; ?>
+              <?php else : ?>
+                <?php echo $home_gallery_heading; ?>
+              <?php endif; ?>
+            </h2>
+            <p class="show-off__text"><?php echo $home_gallery_text; ?></p>
             <div>
-              <a href="#" class="show-off__cta">Check out the Gallery »</a>
+              <a href="<?php echo $home_gallery_link; ?>" <?php echo $home_gallery_link_new_tab ? 'target="_blank"' : ''; ?> class="show-off__cta">
+                <?php echo $home_gallery_link_text; ?> »
+              </a>
             </div>
           </div>
         </div>
@@ -183,20 +214,20 @@ get_header();
         <div class="show-off__right">
           <div class="show-off__right-content">
             <div class="show-off__img-wrap first">
-              <img src="./img/show-off-1.jpg" alt="">
+              <img src="<?php echo $home_gallery_img_1; ?>" alt="">
             </div>
             <div class="show-off__img-wrap second">
-              <img src="./img/show-off-2.jpg" alt="">
+              <img src="<?php echo $home_gallery_img_2; ?>" alt="">
             </div>
             <div class="show-off__img-wrap third">
-              <img src="./img/show-off-3.jpg" alt="">
+              <img src="<?php echo $home_gallery_img_3; ?>" alt="">
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="grid-flag" style="background-image: url('./img/grid-flag.svg');"></div>
+    <div class="grid-flag" style="background-image: url('<?php echo ASSETS_URL; ?>img/grid-flag.svg');"></div>
 
   </div>
 </section>
