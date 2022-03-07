@@ -9,11 +9,18 @@ get_header();
 <!-- = = = = = = = = = = = = = = = = = = = = =
   BEGIN HERO
 = = = = = = = = = = = = = = = = = = = = = = -->
-<div class="section-wrap section-wrap--bg-img section-wrap--big bg-overlay" style="background-image: url('../img/25-banner.jpg');">
+<?php
+  $about_hero_image = audint_get_meta_or_default( get_the_ID(), 'audint_about_hero_image', 'about_hero', 'image' );
+  $about_hero_heading = audint_get_meta_or_default( get_the_ID(), 'audint_about_hero_heading', 'about_hero', 'heading' );
+  $about_hero_hours = audint_get_meta_or_default( get_the_ID(), 'audint_about_hero_display_hours', 'about_hero', 'display_hours' );
+?>
+<div class="section-wrap section-wrap--bg-img section-wrap--big bg-overlay" style="background-image: url('<?php echo $about_hero_image; ?>');">
   <div class="section-wrap__inner">
 
     <header class="section-header">
-      <h2 class="section-header__title section-header__title--center section-header__title--big">About Us</h2>
+      <h2 class="section-header__title section-header__title--center section-header__title--big">
+        <?php echo $about_hero_heading; ?>
+      </h2>
     </header>
 
   </div>
@@ -21,6 +28,7 @@ get_header();
 <!-- = = = = = = = = = = = = = = = = = = = = =
   BEGIN HOURS BANNER
 = = = = = = = = = = = = = = = = = = = = = = -->
+<?php if ( $about_hero_hours ) : ?>
 <div class="hours-banner">
   <div class="hours-banner__left">
     <strong class="hours-banner__label">Our Hours</strong>
@@ -46,6 +54,7 @@ get_header();
     <strong>239-495-0586</strong>
   </div>
 </div>
+<?php endif; ?>
 
 
 <!-- = = = = = = = = = = = = = = = = = = = = =

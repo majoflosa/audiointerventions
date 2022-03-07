@@ -37,6 +37,7 @@ $audint_meta_boxes = [];
 require_once 'inc/meta-fields/meta-fields-functions.php';
 require_once 'inc/meta-fields/meta-components/meta-callout.php';
 require_once 'inc/meta-fields/page-home/meta-page-home.php';
+require_once 'inc/meta-fields/page-about/meta-page-about.php';
 
 // taxonomy meta
 

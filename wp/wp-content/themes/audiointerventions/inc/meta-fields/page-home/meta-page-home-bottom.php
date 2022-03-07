@@ -4,7 +4,7 @@
  */
 $audint_meta_boxes['home']['bottom'] = [
   'id'            => 'audint_home_bottom',
-  'title'         =>  'Bottom Banner',
+  'title'         => 'Bottom Banner',
   'callback'      => 'audint_home_bottom_cb',
   'screen'        => 'page',
   'context'       => 'normal',
