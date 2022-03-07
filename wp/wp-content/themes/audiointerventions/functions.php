@@ -22,6 +22,7 @@ require_once 'inc/walkers/walker-header-nav.php';
 // Each group of defaults are set in each settings file. (Ex: inc/theme-settings/main-global.php)
 $audint_defaults = [];
 require_once 'inc/helpers/defaults.php';
+require_once 'inc/helpers/templates.php';
 
 // custom posts and taxonomies
 // theme options

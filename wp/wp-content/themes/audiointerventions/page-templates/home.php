@@ -22,22 +22,7 @@ get_header();
   <div class="hero__inner constraint-lg">
     <div class="hero__content">
       <h1 class="hero__title">
-        <?php if ( $hero_is_bicolor ) :
-          $words = explode( ' ', $hero_heading );
-          $hero_colored_words_arr = explode( ',', $hero_colored_words );
-          $words_index = 0;
-        ?>
-          <?php foreach ($words as $word) : ?>
-            <?php if ( in_array( $words_index, $hero_colored_words_arr, false ) ) : ?>
-              <span class="color-primary"><?php echo $word . ' '; ?></span>
-            <?php else : ?>
-              <?php echo $word . ' '; ?>
-            <?php endif;
-            $words_index++;
-          endforeach; ?>
-        <?php else : ?>
-          <?php echo $hero_heading; ?>
-        <?php endif; ?>
+        <?php echo audint_display_bicolor_text( $hero_heading, $hero_is_bicolor, $hero_colored_words ); ?>
       </h1>
       <p class="hero__tagline"><?php echo $hero_text; ?></p>
     </div>
@@ -121,21 +106,7 @@ get_header();
           <div class="feature-callout__content-inner">
             <header class="feature-callout__header">
               <h2 class="<?php echo $title_classes; ?>">
-              <?php if ( $callout['bicolor'] ) :
-                $words = explode( ' ', $callout['title'] );
-                $title_colored_words_arr = explode( ',', $callout['colored_words'] );
-                $words_index = 0;
-              ?>
-                <?php foreach ( $words as $word ) : ?>
-                  <?php if ( in_array( $words_index, $title_colored_words_arr, false) ) : ?>
-                    <span class="color-primary"><?php echo $word . ' '; ?></span>
-                  <?php else : ?>
-                    <?php echo $word . ' '; ?>
-                  <?php endif; ?>
-                <?php $words_index++; endforeach; ?>
-              <?php else : ?>
-                <?php echo $callout['title']; ?>
-              <?php endif; ?>
+              <?php echo audint_display_bicolor_text( $callout['title'], $callout['bicolor'], $callout['colored_words'] ); ?>
               </h2>
             </header>
             <main class="<?php echo $body_classes; ?>">
@@ -183,22 +154,7 @@ get_header();
         <div class="show-off__left">
           <div class="show-off__left-content">
             <h2 class="show-off__title">
-              <?php if ( $home_gallery_bicolor ) :
-                $words = explode( ' ', $home_gallery_heading );
-                $home_gallery_colored_words_arr = explode( ',', $home_gallery_colored_words );
-                $words_index = 0;
-              ?>
-                <?php foreach ($words as $word) : ?>
-                  <?php if ( in_array( $words_index, $home_gallery_colored_words_arr, false ) ) : ?>
-                    <span class="color-primary"><?php echo $word . ' '; ?></span>
-                  <?php else : ?>
-                    <?php echo $word . ' '; ?>
-                  <?php endif;
-                  $words_index++;
-                endforeach; ?>
-              <?php else : ?>
-                <?php echo $home_gallery_heading; ?>
-              <?php endif; ?>
+            <?php echo audint_display_bicolor_text( $home_gallery_heading, $home_gallery_bicolor, $home_gallery_colored_words ); ?>
             </h2>
             <p class="show-off__text"><?php echo $home_gallery_text; ?></p>
             <div>
