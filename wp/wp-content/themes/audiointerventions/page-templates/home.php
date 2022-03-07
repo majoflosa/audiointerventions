@@ -170,13 +170,13 @@ get_header();
         <div class="show-off__right">
           <div class="show-off__right-content">
             <div class="show-off__img-wrap first">
-              <img src="<?php echo $home_gallery_img_1; ?>" alt="">
+              <img src="<?php echo $home_gallery_img_1; ?>" alt="Image of speakers installed in car">
             </div>
             <div class="show-off__img-wrap second">
-              <img src="<?php echo $home_gallery_img_2; ?>" alt="">
+              <img src="<?php echo $home_gallery_img_2; ?>" alt="Image of speakers installed in car">
             </div>
             <div class="show-off__img-wrap third">
-              <img src="<?php echo $home_gallery_img_3; ?>" alt="">
+              <img src="<?php echo $home_gallery_img_3; ?>" alt="Image of speakers installed in car">
             </div>
           </div>
         </div>
@@ -190,14 +190,21 @@ get_header();
 
 
 <!-- = = = = = = = = = = = = = = = = = = = = =
-  BEGIN HERO
+  BEGIN BOTTOM HERO
 = = = = = = = = = = = = = = = = = = = = = = -->
-<div class="section-wrap section-wrap--bg-img section-wrap--big bg-overlay" style="background-image: url('./img/25-banner.jpg');">
+<?php
+  $home_bottom_heading = audint_get_meta_or_default( get_the_ID(), 'audint_home_bottom_heading', 'home_bottom', 'heading' );
+  $home_bottom_phone = audint_get_meta_or_default( get_the_ID(), 'audint_home_bottom_phone', 'home_bottom', 'phone' );
+  $home_bottom_image = audint_get_meta_or_default( get_the_ID(), 'audint_home_bottom_image', 'home_bottom', 'image' );
+?>
+<div class="section-wrap section-wrap--bg-img section-wrap--big bg-overlay" style="background-image: url('<?php echo $home_bottom_image; ?>');">
   <div class="section-wrap__inner">
 
     <header class="section-header">
-      <h2 class="section-header__title section-header__title--center">Enjoy every minute you spend in your vehicle. Invest in the best sound system available.</h2>
-      <p class="section-header__title section-header__title--big section-header__title--center"><span class="color-primary">239-495-0586</span></p>
+      <h2 class="section-header__title section-header__title--center"><?php echo $home_bottom_heading; ?></h2>
+      <p class="section-header__title section-header__title--big section-header__title--center">
+        <span class="color-primary"><?php echo $home_bottom_phone; ?></span>
+      </p>
     </header>
 
   </div>
