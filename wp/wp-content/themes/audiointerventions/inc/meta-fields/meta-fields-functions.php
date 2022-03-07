@@ -205,7 +205,7 @@ function audint_meta_wp_editor( $args ) {
  * $args: label, description, default_value, value, name, id, text, in_new_tab
  */
 function audint_meta_link( $args ) {
-  $pages_args = [ 'post_type' => 'page', 'posts_per_page' => 30 ];
+  $pages_args = [ 'post_type' => 'page', 'posts_per_page' => 30, 'status' => 'published' ];
   $pages_query = new WP_Query( $pages_args );
   $pages = [];
   if ( $pages_query->have_posts() ) : 
@@ -249,7 +249,11 @@ function audint_meta_link( $args ) {
       <select name="select_page_link" id="select_page_link" class="js-link-field__page-selector">
         <option value="">-- Select Page --</option>
         <?php foreach ($pages as $page) : ?>
-          <option value="<?php echo $page['permalink']; ?>" <?php echo $args['url']['value'] === $page['permalink'] ? 'selected' : ''; ?>>
+          <?php if ( $page['permalink'] == $args['url']['value'] ) : ?>
+            <option value="<?php echo $page['permalink']; ?>" selected>
+          <?php else : ?>
+            <option value="<?php echo $page['permalink']; ?>">
+          <?php endif; ?>
             <?php echo $page['title']; ?>
           </option>
         <?php endforeach; ?>

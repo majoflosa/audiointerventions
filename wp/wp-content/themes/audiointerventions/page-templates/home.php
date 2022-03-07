@@ -113,12 +113,14 @@ get_header();
               <?php echo $callout['body']; ?>
             </main>
             <footer class="feature-callout__footer">
+              <?php if ( $callout['link_type'] != 'none' ) : ?>
               <a
                 href="<?php echo $callout['link']; ?>"
                 <?php echo $callout['link_new_tab'] ? 'target="_blank"' : ''; ?>
                 class="feature-callout__cta-btn">
                 <?php echo $callout['link_text']; ?> »
               </a>
+              <?php endif; ?>
             </footer>
           </div><!-- end content-inner -->
           <div class="grid-flag" style="background-image: url('<?php echo ASSETS_URL; ?>/img/grid-flag.svg');"></div>
@@ -140,6 +142,7 @@ get_header();
   $home_gallery_colored_words = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_colored_words', 'home_gallery', 'colored_words' );
   $home_gallery_text = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_text', 'home_gallery', 'text' );
   $home_gallery_link = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_link', 'home_gallery', 'link' );
+  $home_gallery_link_type = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_link_type', 'home_gallery', 'link_type' );
   $home_gallery_link_text = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_link_text', 'home_gallery', 'link_text' );
   $home_gallery_link_new_tab = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_link_new_tab', 'home_gallery', 'link_new_tab' );
   $home_gallery_img_1 = audint_get_meta_or_default( get_the_ID(), 'audint_home_gallery_image_1', 'home_gallery', 'image_1' );
@@ -157,11 +160,13 @@ get_header();
             <?php echo audint_display_bicolor_text( $home_gallery_heading, $home_gallery_bicolor, $home_gallery_colored_words ); ?>
             </h2>
             <p class="show-off__text"><?php echo $home_gallery_text; ?></p>
+            <?php if ( $home_gallery_link_type != 'none') : ?>
             <div>
               <a href="<?php echo $home_gallery_link; ?>" <?php echo $home_gallery_link_new_tab ? 'target="_blank"' : ''; ?> class="show-off__cta">
                 <?php echo $home_gallery_link_text; ?> »
               </a>
             </div>
+            <?php endif; ?>
           </div>
         </div>
       </div>
