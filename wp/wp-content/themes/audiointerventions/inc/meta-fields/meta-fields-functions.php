@@ -188,7 +188,9 @@ function audint_meta_wp_editor( $args ) {
         <span><?php echo $args['description']; ?></span>
       <?php endif; ?>
       <?php if ( isset( $args['default_value'] ) ) : ?>
-        <span> (If blank, defaults to <em>"<?php echo $args['default_value']; ?>"</em>)</span>
+        <?php if ( isset( $args['show_default'] ) && $args['show_default'] ) : ?>
+          <span> (If blank, defaults to <em>"<?php echo $args['default_value']; ?>"</em>)</span>
+        <?php endif; ?>
       <?php endif; ?>
     </label>
     <div class="audint-meta-field-group__right grow">

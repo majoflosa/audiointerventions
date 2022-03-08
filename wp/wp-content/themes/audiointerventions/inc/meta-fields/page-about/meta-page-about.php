@@ -5,6 +5,7 @@
 $audint_meta_boxes['about'] = [];
 
 require_once 'meta-page-about-hero.php';
+require_once 'meta-page-about-body.php';
 
 function audint_about_meta_boxes() {
   global $post;

@@ -22,7 +22,7 @@ function audint_about_hero_cb( $post ) {
   wp_nonce_field( 'audint_about_hero_meta', 'audint_about_hero_meta_nonce' );
   ?>
     <div class="outer">
-      <p class="description">Settings for bottom banner of Home page.</p>
+      <p class="description">Settings for main banner of About page.</p>
 
       <div class="meta-row audint-meta-row" id="audint-meta-about-hero">
         <div class="meta-td audint-meta-td">

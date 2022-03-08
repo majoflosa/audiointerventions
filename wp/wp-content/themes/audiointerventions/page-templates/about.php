@@ -60,17 +60,20 @@ get_header();
 <!-- = = = = = = = = = = = = = = = = = = = = =
     BEGIN SIMPLE TEXT
   = = = = = = = = = = = = = = = = = = = = = = -->
+  <?php
+    $body_heading = audint_get_meta_or_default( get_the_ID(), 'audint_about_body_heading', 'about_body', 'heading' );
+    $body_content = audint_get_meta_or_default( get_the_ID(), 'audint_about_body_content', 'about_body', 'content' );
+    $body_gallery = audint_get_meta_or_default( get_the_ID(), 'audint_about_body_gallery', 'about_body', 'gallery' );
+  ?>
   <div class="section-wrap section-wrap--light">
     <div class="section-wrap__inner constraint-lg">
 
       <div class="text-block">
         <header class="text-block__header">
-          <h2 class="text-block__title">Let Us Cater To Your Specific Needs</h2>
+          <h2 class="text-block__title"><?php echo $body_heading; ?></h2>
         </header>
         <div class="text-block__body">
-          <p>Our attention to detail and craftsmanship are what set Audio Interventions part from any other mobile electronics dealer. More than just a retails store or installation center, Audio Interventions is the definitive example of professionals who will consult with you to learn your desired expectations, compare and select the correct components, and answer any questions you may have.</p>
-          <p>Each vehicle is different, and every customer has his or her own set of expectations. With that in mind, part of Audio Intervention’s quest for complete customer satisfaction begins with an initial consultation to understand your mobile electronic needs. Oncer your goals have been established, we will schedule an appointment for your vehicle, and you can comfortably leave your vehicle in our hands with the certainty that when you get it back, you will be completely satisfied. Finally, we will walk you through the system’s functions after installation to make sure all of your questions are answered and you fully understand how your new system works.</p>
-          <p>At Audio Interventions, we believe that in order to achieve high levels of quality and customer satisfaction, it’s important for us to have the proper facility. Audio Interventions is equipped with a cabinet-grade woodworking facility, composite fabrication equipment, electronic diagnostic equipment, and more. It’s a commitment to quality workmanship that you won’t find anywhere else. We know that great work begins with great people. That’s why Audio Interventions provides its employees with an immaculate, well-equipped facility, and continued education in mobile electronics, to further set ourselves part from the competition.</p>
+          <?php echo $body_content; ?>
         </div>
       </div>
 
@@ -84,6 +87,7 @@ get_header();
   <!-- = = = = = = = = = = = = = = = = = = = = =
     BEGIN ABOUT GALLERY
   = = = = = = = = = = = = = = = = = = = = = = -->
+  <?php if ( $body_gallery ) : ?>
   <div class="about-us-gallery">
     <div class="photo-gallery">
       <div class="photo-gallery__item">
@@ -109,7 +113,7 @@ get_header();
       </div>
     </div>
   </div>
-
+  <?php endif; ?>
 
 
 
