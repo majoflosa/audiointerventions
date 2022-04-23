@@ -49,7 +49,6 @@ function audint_about_body_cb( $post ) {
             'drag_drop_upload' => false,
             'textarea_name' => 'audint_about_body_content',
             'textarea_rows' => 24,
-            'teeny' => true,
           ];
           $body_content_args = [
             'label' => 'Content.',

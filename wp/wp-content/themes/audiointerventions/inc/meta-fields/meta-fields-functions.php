@@ -179,6 +179,7 @@ function audint_meta_media_image( $args ) {
  * Outputs a rich text editor field
  */
 function audint_meta_wp_editor( $args ) {
+  $args['wp_editor_settings']['wpautop'] = false;
   ?>
 
   <div class="audint-meta-field-group inline">
