@@ -320,3 +320,34 @@ function audint_meta_link( $args ) {
 </div>
 <?php
 }
+
+/**
+ * Outputs a select field
+ * 
+ * $args: label, description, name, id, default_value, value, options
+ */
+function audint_meta_select( $args ) {
+  ?>
+
+  <div class="audint-meta-field-group inline">
+    <label for="<?php echo $args['name']; ?>" class="audint-meta-field-group__left">
+      <strong><?php echo $args['label']; ?></strong>
+      <?php if ( isset( $args['description'] ) ) : ?>
+        <span><?php echo $args['description']; ?></span>
+      <?php endif; ?>
+      <?php if ( isset( $args['default_value'] ) ) : ?>
+        <span>(If blank, defaults to <a href="<?php echo $args['default_value']; ?>" target="_blank">this image</a>.)</span>
+      <?php endif; ?>
+    </label>
+    <div class="audint-meta-field-group__right grow">
+      <select name="<?php echo $args['name']; ?>" id="<?php echo $args['id']; ?>" class="audint-meta-select">
+        <option value="">-- Select --</option>
+      <?php foreach($args['options'] as $option) : ?>
+        <option value="<?php echo $option['value']; ?>"><?php echo $option['label']; ?></option>
+      <?php endforeach; ?>
+      </select>
+    </div>
+  </div>
+
+  <?php
+}

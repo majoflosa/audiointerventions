@@ -71,10 +71,16 @@ function audint_about_body_cb( $post ) {
             'description' => 'Optionally display a set of images from your created galleries under main body of text. To omit, leave the "-- Select Gallery --" option.',
             'name'  => 'audint_about_body_gallery',
             'id'  => 'audint_about_body_gallery',
-            'default_value' => audint_get_default( 'about_body', 'gallery'),
+            'default_value' => audint_get_default( 'about_body', 'gallery' ),
             'value' => $body_gallery_value,
+            'options' => [
+              ['value' => 1, 'label' => 'Option 1'],
+              ['value' => 2, 'label' => 'Option 2'],
+              ['value' => 3, 'label' => 'Option 3'],
+              ['value' => 4, 'label' => 'Option 4'],
+            ],
           ];
-          audint_meta_text( $body_gallery_args );
+          audint_meta_select( $body_gallery_args );
         ?>
 
         </div>
