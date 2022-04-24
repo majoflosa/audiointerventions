@@ -25,6 +25,8 @@ require_once 'inc/helpers/defaults.php';
 require_once 'inc/helpers/templates.php';
 
 // custom posts and taxonomies
+require_once 'inc/custom-posts/gallery.php';
+
 // theme options
 $audint_theme_settings = [];
 require_once 'inc/theme-settings/main-settings.php';
