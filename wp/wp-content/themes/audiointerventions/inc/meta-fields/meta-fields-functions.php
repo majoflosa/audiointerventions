@@ -174,6 +174,43 @@ function audint_meta_media_image( $args ) {
   <?php
 }
 
+/**
+ * Outputs Multiple Image Field with WP Media Uploader
+ * 
+ * $args: label, description, name, id, default_value, value
+ */
+function audint_meta_media_images( $args ) {
+?>
+  <div class="audint-meta-field-group inline js-media-library-fields" data-multiple="true">
+    <label for="<?php echo $args['name']; ?>" class="audint-meta-field-group__left">
+      <strong><?php echo $args['label']; ?></strong>
+      <?php if ( isset( $args['description'] ) ) : ?>
+        <span><?php echo $args['description']; ?></span>
+      <?php endif; ?>
+    </label>
+    <div class="audint-meta-field-group__right grow">
+      <div class="audint-meta-image-preview audint-meta-image-preview--multiple js-media-library-fields__preview-wrap">
+        <?php
+          $images = explode( ',', $args['value'] );
+          foreach ($images as $image) :
+        ?>
+          <div class="audint-meta-image-preview__item js-media-library-fields__preview-item">
+            <img src="<?php echo $image; ?>" class="js-media-library-fields__preview-img">
+            <div class="audint-meta-image-preview__item-overlay">
+              <button class="audint-meta-image-remove js-media-library-fields__remove">X Remove</button>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+      <button class="audint-meta-image-clear button button-primary js-media-library-fields__button">Select Images</button>
+      <button class="audint-meta-image-clear components-button is-destructive js-media-library-fields__clear">Clear</button>
+      <input type="hidden" name="<?php echo $args['name']; ?>" id="<?php echo $args['id']; ?>" class="js-media-library-fields__input" value="<?php echo $args['value']; ?>">
+    </div>
+  </div>
+
+<?php
+}
+
 
 /**
  * Outputs a rich text editor field

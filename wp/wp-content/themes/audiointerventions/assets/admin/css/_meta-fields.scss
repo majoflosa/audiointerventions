@@ -83,9 +83,52 @@
   }
 }
 
+.audint-meta-image-preview--multiple {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  .audint-meta-image-preview__item {
+    flex-basis: 200px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    position: relative;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    &:hover .audint-meta-image-preview__item-overlay {
+      display: block;
+    }
+  }
+
+
+  .audint-meta-image-preview__item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: none;
+  }
+}
+
 .audint-meta-image-button {
   margin-left: 1px !important;
   margin-bottom: 5px !important;
+}
+
+.audint-meta-image-clear.components-button.is-destructive {
+  padding: 0 10px;
+  height: auto;
+  min-height: 30px;
 }
 
 .audint-meta-checkbox-wrap {
