@@ -193,6 +193,7 @@ function audint_meta_media_images( $args ) {
         <?php
           $images = explode( ',', $args['value'] );
           foreach ($images as $image) :
+          if ( ! empty( $image ) ) :
         ?>
           <div class="audint-meta-image-preview__item js-media-library-fields__preview-item">
             <img src="<?php echo $image; ?>" class="js-media-library-fields__preview-img">
@@ -200,6 +201,7 @@ function audint_meta_media_images( $args ) {
               <button class="audint-meta-image-remove js-media-library-fields__remove">X Remove</button>
             </div>
           </div>
+        <?php endif; ?>
         <?php endforeach; ?>
       </div>
       <button class="audint-meta-image-clear button button-primary js-media-library-fields__button">Select Images</button>

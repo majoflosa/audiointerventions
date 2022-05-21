@@ -23,6 +23,7 @@ require_once 'inc/walkers/walker-header-nav.php';
 $audint_defaults = [];
 require_once 'inc/helpers/defaults.php';
 require_once 'inc/helpers/templates.php';
+require_once 'inc/helpers/post-types.php';
 
 // custom posts and taxonomies
 require_once 'inc/custom-posts/gallery.php';
@@ -40,6 +41,8 @@ require_once 'inc/meta-fields/meta-fields-functions.php';
 require_once 'inc/meta-fields/meta-components/meta-callout.php';
 require_once 'inc/meta-fields/page-home/meta-page-home.php';
 require_once 'inc/meta-fields/page-about/meta-page-about.php';
+
+require_once 'inc/meta-fields/post-galleries/meta-galleries.php';
 
 // taxonomy meta
 
